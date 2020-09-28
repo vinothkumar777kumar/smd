@@ -1,0 +1,74 @@
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>Edit sale Discount</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" (click)="gotpreviews()" [routerLink]="['/view-salediscount']"><i class="fa fa-close"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="editsalediscountform">
+                <input type="hidden" name="id" formControlName="id" />
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Select Competition</label>
+                            <select class="form-control" name="competition_id" placeholder="Select Competition" style="padding: 8px;cursor: pointer;" id="competition" formControlName="competition_id">
+                <option value="">Select Competition</option>
+                    <option *ngFor="let cd of competitionarray" [value]="cd.id">{{cd.competition}}</option>
+                </select>
+                            <div *ngIf="isSubmitted && formControls.competition_id.errors" class="help-block">
+                                <span *ngIf="formControls.competition_id.errors.required">
+                        competition is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Discount Date</label>
+                            <input type="text" name="sale_date" class="form-control" formControlName="sale_date" [attr.disabled]='true' />
+                            <div *ngIf="isSubmitted && formControls.sale_date.errors" class="help-block">
+                                <span *ngIf="formControls.sale_date.errors.required">
+                        Sale date is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Discount Type</label>
+                            <!-- <input type="text" class="form-control" name="coupon_type" formControlName="coupon_type" (keypress)="numberOnly($event)" /> -->
+                            <select class="form-control" name="discount" formControlName="discount">
+                               <option value="1">Amount</option>
+                               <option value="2">Percentage</option>
+                           </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Discount Price</label>
+                            <input type="text" name="value" class="form-control" formControlName="value" />
+                            <div *ngIf="isSubmitted && formControls.value.errors" class="help-block">
+                                <span *ngIf="formControls.value.errors.required">
+                        Discount Price is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-group pull-right">
+
+                    <button type="button" class="btn yellow-btn" (click)="update_salediscount()">
+                        <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>Update</button>
+                </div>
+            </form>
+            <!-- {{editsalediscountform.value | json}} -->
+        </div>
+    </div>
+</div>

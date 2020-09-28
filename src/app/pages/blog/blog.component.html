@@ -1,0 +1,34 @@
+<div class="container pagepadd">
+    <div class="row">
+        <div class="">
+            <div class="heading_blog">
+                <h2 class="border_yellow">Blog</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let bd of blogarraydata;let i = index" style="margin-bottom: 30px;">
+            <a href="javascript:void(0)" (click)="view_blog(bd)">
+            <div class="card" style="height: 410px;">
+                <img src="{{bd.image}}" alt="blog" class="card-img-top" onerror="this.onerror=null;this.src='assets/img/smd/logo.png';" style="height: 316px;">
+                <div class="card-body">
+                    <p class="card-text">{{bd.title}}</p>
+                </div>
+            </div>
+        </a>
+           
+        </div>
+        <div class="col-lg-12" *ngIf="emptyblogdata">
+            <p >
+                No Data Found
+            </p>
+        </div>
+    </div>
+    <div *ngIf="isLoading" class="row" style="text-align: center;margin-top: 20px;">
+        <div class="col-lg-12">
+            <span class="spinner-border text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+            </span>
+        </div>
+    </div>
+</div>

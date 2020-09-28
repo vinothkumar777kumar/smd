@@ -1,0 +1,297 @@
+<!-- <div class="baner-container">
+    <div style="width: 160px;">
+        <ul style="display: flex;">
+            <li style="padding: 0 5px;background-color: #00b67a;width: 26px;height: 25px;margin: 1px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+            <li style="padding: 0 5px;background-color: #00b67a;width: 26px;height: 25px;margin: 1px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+            <li style="padding: 0 5px;background-color: #00b67a;width: 26px;height: 25px;margin: 1px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+            <li style="padding: 0 5px;background-color: #00b67a;width: 26px;height: 25px;margin: 1px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+            <li style="padding: 0 5px;background-color: #00b67a;width: 26px;height: 25px;margin: 1px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+            <li><i style="color: #00b67a;padding: 0 5px;" class="fa fa-star" aria-hidden="true"></i>
+                <span>Trustpilot</span>
+            </li>
+        </ul>
+
+    </div>
+    <div>
+        <a href="#" class="likebtn" style="padding: 6px;margin: 5px;">
+            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+            <span class="btncont">Like</span>
+            <span class="btncont">112K</span></a>
+        <a href="#" class="likebtn" style="padding: 6px;">
+            <i class="fa fa-users" style="margin-right: 5px;"></i>
+
+            <strong style="margin-right: 3px;">Join </strong> our community
+
+        </a>
+    </div>
+</div> -->
+<div style="min-height: 80px;position: relative;margin-top: 10px;" *ngIf="isloading">
+    <div *ngIf="isloading" class="col-lg-12" style="text-align: center;">
+        <span class="spinner-border text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+        </span>
+    </div>
+    
+</div>
+    <ngb-carousel class="main-slider" *ngIf="isshowmainslider">
+        <ng-template ngbSlide *ngFor="let si of sliderarray">
+            <div class="picsum-img-wrapper">
+                <img src="{{si.image}}" alt="Carousel 1" style="width: 100%;height:500px; margin-right: 10px;" onerror="this.onerror=null;this.src='assets/img/smd/logo.png';">
+            </div>
+            <div class="carousel-caption">
+                <h3 style="color: #fdcc03;">{{si.competition}}</h3>
+                <button class="btn btn-sm yellow-btn" (click)="competitions_details(si)">Enter Now</button>
+                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+            </div>
+        </ng-template>
+        
+    </ngb-carousel>
+
+<div class="container-fluid">
+    <div class="contentrow">
+        <div class="row" style="margin-bottom: 30px;justify-content: center;">
+            <h2 class="border_yellow">How It Works</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3" style="text-align: center;">
+                <div class="icon-large">
+                    <img style="height:200px" src="assets/img/smd/smd_gift.jpg" alt="ticket" onerror="this.onerror=null;this.src='assets/img/smd/logo.png';"/>
+                </div>
+                <p class="icon-heading">1 - Pick a prize</p>
+                <p style="font-size: 14px;"> Browse for a chance to win !<br> You are in with a great chance to win amazing prizes as laptops, cash or much more.
+                </p>
+            </div>
+            <div class="col-md-3" style="text-align: center;">
+                <div class="icon-large">
+                    <img style="height:200px" src=" assets/img/smd/smd_ticket.jpg " alt="ticket " />
+                </div>
+                <p class="icon-heading ">2 - Select your tickets</p>
+                <p style="font-size: 14px; "> Who knows Fortune might just favour YOU ! <br>Select the ticket number of your choice using either the Lucky Dip or the Custom Ticket Selector and enter the competition.</p>
+            </div>
+            <div class="col-md-3 " style="text-align: center; ">
+                <div class="icon-large ">
+                    <img style="height:200px" src="assets/img/smd/smd_faq.png" alt="ticket" />
+                </div>
+                <p class="icon-heading">3 - Answer A Question</p>
+                <p style="font-size: 14px;">Test your skill ! <BR> Choose the correct answer from the question given before you checkout.</p>
+            </div>
+            <div class="col-md-3 " style="text-align: center; ">
+                <div class="icon-large ">
+                    <img style="height:200px" src="assets/img/smd/smd_winner.jpg" alt="ticket" />
+                </div>
+                <p class="icon-heading">4 - Daily winner</p>
+                <p style="font-size: 14px;">Make your dreams come true ! <br> You could be the next winner to join our winners’ podium.</p>
+            </div>
+        </div>
+    </div>
+    <div class="contentrow" *ngIf="showfeaturedcompetition">
+        <div class="row" style="margin-bottom: 30px;justify-content: center;">
+            <h2 class="border_yellow">Featured Competitions</h2>
+        </div>
+        <div class="row">
+            <div *ngIf="isloading" class="col-lg-12" style="text-align: center;">
+                <span class="spinner-border text-warning" role="status">
+                    <span class="sr-only">Loading...</span>
+                </span>
+            </div>
+
+            <div class="col-md-4" style="margin-top: 30px;
+            margin-bottom: 30px;" *ngFor="let cd of featuredarraydata">
+                <a class="single-competitions comp-bg-1" href="javascript:void(0)" (click)="competitions_details(cd)" style="background-image: url({{cd.image}});">
+                    <div *ngIf="cd.sold == 'true'" class="ribbon ribbon-top-right yellow"><span>SOLD OUT</span></div>
+                    <div *ngIf="cd.discount_status == 'true'"class="sc-EHOje hsyqvJ">Sale</div>
+                    <div class="sc-htpNat fPoByH">
+                        <div *ngIf="cd.discount_status == 'true'" class="sc-bxivhb qqXnv">£{{cd.ticket_price}}</div>
+                        <div *ngIf="cd.discount_status == 'true'"  class="sc-ifAKCX hiinnP">£{{cd.discount_price}}</div>
+                        <div *ngIf="cd.discount_status == 'false'" class="sc-ifAKCX hiinnP">£{{cd.ticket_price}}</div>
+                    </div>
+                </a>
+                <p class="fcbottom_content">{{cd.competition}}</p>
+            </div>
+            <p class="nodatafoundhome" *ngIf="emptyfeatuiredarraydata">Coming Soon</p>
+
+        </div>
+    </div>
+    <div class="contentrow" *ngIf="showupcomingcompetition">
+        <div class="row" style="margin-bottom: 60px;justify-content: center;">
+            <h2 class="border_yellow">Upcoming Competitions</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3" style="margin-top: 30px;
+            margin-bottom: 30px;" *ngFor="let cd of upcomming">
+                <a class="single-competitions comp-bg-1" href="javascript:void(0)" style="background-image: url({{cd.image}});">
+                    <div class="sc-EHOje hsyqvJ">Coming Soon</div>
+                    <div class="sc-htpNat fPoByH">
+                        <!-- <div class="sc-bxivhb qqXnv">£{{cd.ticket_price}}</div> -->
+                        <!-- <div class="sc-ifAKCX hiinnP">£{{cd.sale_price}}</div> -->
+                    </div>
+                </a>
+                <p class="fcbottom_content">{{cd.competition}}</p>
+            </div>
+            <p class="nodatafoundhome" *ngIf="upcomming.length == 0">Coming Soon</p>
+        </div>
+    </div>
+    <!-- <div class="contentrow">
+        <div class="row" style="margin-bottom: 30px;justify-content: center;">
+            <h2 class="border_yellow">More Competitions</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3" style="margin-top: 30px;
+            margin-bottom: 30px;" *ngFor="let cd of morecompetiton">
+                <a class="single-competitions comp-bg-1" href="javascript:void(0)" (click)="competitions_details(cd)" style="background-image: url({{cd.image}});">
+                    <div class="sc-EHOje hsyqvJ">Sale!</div>
+                    <div class="sc-htpNat fPoByH">
+                        <div class="sc-bxivhb qqXnv">£{{cd.ticket_price}}</div>
+                        <div class="sc-ifAKCX hiinnP">£{{cd.ticket_price}}</div>
+                    </div>
+                </a>
+                <p class="fcbottom_content">{{cd.competition}}</p>
+            </div>
+            <p class="nodatafoundhome" *ngIf="morecompetiton.length == 0">Coming Soon</p>
+        </div>
+    </div> -->
+    <div class="contentrow">
+        <div class="row" style="margin-bottom: 30px;justify-content: center;">
+            <h2 class="border_yellow">Previous Winners</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7" style="margin-top: 30px;
+            margin-bottom: 30px;margin: auto;">
+                <ngb-carousel class="alltimewinner">
+                    <ng-template ngbSlide>
+                        <div class="picsum-img-wrapper" style="text-align: center;">
+                            <img src="assets/img/smd/whitelion.jpg" alt="Angular Carousel 1" onerror="this.onerror=null;this.src='assets/img/smd/logo.png';" style="height: 180px;width:180px;border-radius: 50%;margin: auto;left: 0;right: 0;">
+                        </div>
+                        <div class="carousel-caption" style="padding-top: 25px;position: initial;">
+                            <p style="text-transform: uppercase;"><span>LAMBORGHINI HURACAN LP610-4</span>Harrison Griffiths - Lamborghini Huracan<span></span></p>
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+
+        </div>
+    </div>
+    <div class="contentrow" *ngIf="showtestimonials">
+        <div class="row" style="margin-bottom: 30px;justify-content: center;">
+            <h2 class="border_yellow">Testimonials</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7" style="margin-top: 30px;
+            margin-bottom: 30px;margin: auto;">
+            <div *ngIf="isloading" class="col-lg-12" style="text-align: center;">
+                <span class="spinner-border text-warning" role="status">
+                    <span class="sr-only">Loading...</span>
+                </span>
+            </div>
+                <ngb-carousel class="alltimewinner">
+                    <ng-template ngbSlide *ngFor="let tm of testimonialsarray">
+                        <div class="picsum-img-wrapper" style="text-align: center;">
+                            <img src="{{tm.image}}" alt="Angular Carousel 1"  onerror="this.onerror=null;this.src='assets/img/smd/logo.png';" style="height: 180px;width:180px;border-radius: 50%;margin: auto;left: 0;right: 0;">
+                        </div>
+                        <div class="carousel-caption" style="padding-top: 25px;position: initial;text-transform: uppercase;">
+                            <p><span>{{tm.name}}</span></p>
+                            <p><span>{{tm.description}}</span></p>
+                        </div>
+                    </ng-template>
+                    
+
+                </ngb-carousel>
+            </div>
+
+        </div>
+    </div>
+    <!-- <div class="contentrow">
+        <div class="row" style="margin-bottom: 30px;justify-content: center;">
+            <h2 class="border_yellow">Customer Excellence</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="wrapper-left">
+                    <div class="tp-widget-humanscore" style="margin: 0px 0 2px;"><a id="trust-score" target="_blank">Excellent</a></div>
+                    <ul style="display: flex;justify-content: center;margin-bottom: 5px;">
+                        <li style="padding: 0 5px;background-color: #00b67a;width: 26px;height: 25px;margin: 1px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li style="padding: 0 5px;background-color: #00b67a;width: 26px;height: 25px;margin: 1px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li style="padding: 0 5px;background-color: #00b67a;width: 26px;height: 25px;margin: 1px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li style="padding: 0 5px;background-color: #00b67a;width: 26px;height: 25px;margin: 1px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li style="padding: 0 5px;background-color: #00b67a;width: 26px;height: 25px;margin: 1px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+
+                    </ul>
+                    <div class="tp-widget-businessinfo"><a id="translations-basedon" target="_blank">Based on <a target="_blank" href="#"><strong class="bold-underline">2,507 reviews</strong></a></a>
+                    </div>
+                    <ul>
+                        <li><i style="color: #00b67a;padding: 0 5px;" class="fa fa-star" aria-hidden="true"></i>
+                             /                           <span>Trustpilot</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row your-class">
+                    <div class="col-md-12 tp-widget-review">
+                        <div class="tp-widget-stars">
+                            <ul style="display: flex;">
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                            </ul>
+                        </div>
+                        <div class="date">76 minutes ago</div>
+                        <div class="header">Great experience easy to Enter…</div>
+                        <div class="text">Great experience easy to Enter excellent photos.</div>
+                        <div class="name">Mr Robert Knowles</div>
+                    </div>
+                    <div class="col-md-12 tp-widget-review">
+                        <div class="tp-widget-stars">
+                            <ul style="display: flex;">
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                            </ul>
+                        </div>
+                        <div class="date">2 hours ago</div>
+                        <div class="header">Joining was made easy and uncomplicated…</div>
+                        <div class="text">Joining was made easy and uncomplicated Similar competitions try and lure In to...</div>
+                        <div class="name">Mark</div>
+                    </div>
+                    <div class="col-md-12 tp-widget-review">
+                        <div class="tp-widget-stars">
+                            <ul style="display: flex;">
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                            </ul>
+                        </div>
+                        <div class="date">7 hours ago</div>
+                        <div class="header">Very easy and straightforward entry and…</div>
+                        <div class="text">Very easy and straightforward entry and payment for competitions.</div>
+                        <div class="name">Adeel Ahmed</div>
+                    </div>
+                    <div class="col-md-12 tp-widget-review">
+                        <div class="tp-widget-stars">
+                            <ul style="display: flex;">
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                                <li style="padding: 0 5px;background-color: #00b67a;width: 20px;height: 20px;margin: 1px;font-size: 13px;color: #fff;"> <i class="fa fa-star" aria-hidden="true"></i></li>
+                            </ul>
+                        </div>
+                        <div class="date">20 minutes ago</div>
+                        <div class="header">Great experience easy to Enter…</div>
+                        <div class="text">Great experience easy to Enter excellent photos.</div>
+                        <div class="name">Mr Robert Knowles</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
+<div class="clear"></div>

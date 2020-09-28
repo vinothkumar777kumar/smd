@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-md-6 text-center">
+            <div class="login-card">
+                <h4>Login to your Account</h4>
+                <form [formGroup]="loginform">
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <input type="email" name="email" placeholder="Email" formControlName="email" class="form-control input-class">
+
+                        </div>
+                        <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+                            <span *ngIf="formControls.email.errors.required">
+                                Email is required
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="password" name="password" placeholder="Password" formControlName="password" class="form-control input-class">
+                        </div>
+                        <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+                            <span *ngIf="formControls.password.errors.required">
+                                password is required
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="input-field text-right">
+                        <a [routerLink]="['/forgot-password']">Forgot password?</a>
+                    </div>
+                    <div class="text-center input-field ">
+                        <button class="btn btn-block" (click)="login()" [attr.disabled] = "disablelogin == true ? 'disabled' : null ">
+                            <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i> Sign In</button>
+                        <!-- <a class="btn btn-sm yellow-btn login-btn"><i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i> Sign In</a> -->
+                    </div>
+                     <span>OR</span>
+                    <!-- <div class="text-center input-field" style="margin-bottom: 10px;">
+                        <button class="btn btn-block"  [routerLink]="['/loginwithphone']"><i class="fa fa-phone"></i> Login with Phone</button>
+                    </div> -->
+                    <div class="text-center input-field ">
+                        <button target="_blank" class="btn btn-block"  value="" (click)="signInWithFB()" [attr.disabled] = "disableloginfacebook == true ? 'disabled' : null " style="background-color: #3b5998 !important;color: #fff;"><i class="fa fa-facebook-square" aria-hidden="true"></i> Login with Facebook</button>
+                    </div>
+                </form>
+                <div class="input-field">
+                    <div class="input-wrap">Don't have an account? <a [routerLink]="['/register']">Register</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

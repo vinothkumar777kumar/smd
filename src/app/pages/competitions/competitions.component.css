@@ -1,0 +1,10 @@
+@media screen and (max-width: 767px) {
+    .responsive-table {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+}

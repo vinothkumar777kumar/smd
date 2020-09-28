@@ -1,0 +1,72 @@
+
+
+<div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-8">
+            <h4>Rollover Competition</h4>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" style="color: #fff;">
+                <thead>
+                    <tr>
+                        <td>S.No</td>
+                        <td>Start Date</td>
+                        <td>Competition</td>
+                        <!-- <td>Ticket</td> -->
+                        <!-- <td>Booking Date</td> -->
+                        <!-- <td>Status</td> -->
+                        <td>Rollover</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="isloading" style="text-align: center;">
+                        <td colspan="4">
+                            <span class="spinner-border text-warning" role="status">
+                            <span class="sr-only">Loading...</span>
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr *ngFor="let rd of rolloverarray;let i =index;">
+
+                        <td>{{i + 1}}</td>
+                        <!-- <td>
+                            <img style="width: 50px;height:50px;border-radius: 50%;" src="{{wd.profile_image}}" alt="winner_img" onerror="this.onerror=null;this.src='assets/img/png/w.png';" style="width:50px;height:50px;" />
+                        </td> -->
+                        <td *ngIf="rd.start_date == null" style="text-align: center;">No Details</td>
+                        <td *ngIf="rd.start_date">{{rd.start_date}}</td>
+                        <td *ngIf="rd.competition == null" style="text-align: center;">No Details</td>
+                        <td *ngIf="rd.competition" class="text-uppercase">{{rd.competition}}</td>
+                        <!-- <td *ngIf="at.booking_number == null" style="text-align: center;">No Details</td>
+                        <td *ngIf="at.booking_number" class="text-uppercase">{{at.booking_number}}</td> -->
+                        <!-- <td *ngIf="at.booking_date == null" style="text-align: center;">No Details</td>
+                        <td *ngIf="at.booking_date">{{at.booking_date}}</td> -->
+                        <!-- <td *ngIf="at.status == null" style="text-align: center;">No Details</td>
+                        <td *ngIf="at.status == 0">
+                            <span class="badge badge-danger">Expired</span></td>
+                            <td *ngIf="at.status == 1">
+                            <span class="badge badge-success">Live</span></td> -->
+                        <!-- <td>
+                            <a class="btn lucky-dip" data-toggle="modal" data-target="#winnermodal" data-placement="bottom" (click)="winner_select()">Select</a>
+                        </td> -->
+                        <td>
+                            <a href="javascript:void(0)" style="" (click)='rollover(rd)'>
+                                <button class="btn btn-sm btn-primary">
+                                Rollover
+                            </button>
+                            </a>
+                        </td>
+
+
+                    </tr>
+                    <tr *ngIf="emptyrolloverdata" style="text-align:center">
+                        <td colspan="4">No Data Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

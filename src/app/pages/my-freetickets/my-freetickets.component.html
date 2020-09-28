@@ -1,0 +1,84 @@
+
+
+<div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-8">
+            <h4>Free Tickets</h4>
+        </div>
+        <!-- <div class="col-md-4" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/add-winner']"><i class="fa fa-plus"></i> Add</button>
+
+            <select class="form-control btn yellow-btn" name="competition" style="padding: 8px;" id="competition" (change)="select_competition($event)">
+                <option value="0">Select Competition</option>
+                    <option *ngFor="let cd of competitionarray" [value]="cd.id">{{cd.competition}}</option>
+                </select>&nbsp;
+        </div> -->
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" style="color: #fff;">
+                <thead>
+                    <tr style="text-align: center;font-size: 13px;">
+                        <td>S.No</td>
+                        <td>Competition</td>
+                        <td>Total Free Tickets</td>
+                        <td>Available Free Tickets</td>
+                        <!-- <td>Booking Date</td> -->
+                        <!-- <td>Status</td> -->
+                        <!-- <td>Edit</td> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="isloading" style="text-align: center;">
+                        <td colspan="4">
+                            <span class="spinner-border text-warning" role="status">
+                            <span class="sr-only">Loading...</span>
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr *ngFor="let fd of myfreeticketarray;let i =index;" style="text-align: center;font-size: 13px;">
+
+                        <td>{{i + 1}}</td>
+                        <!-- <td>
+                            <img style="width: 50px;height:50px;border-radius: 50%;" src="{{wd.profile_image}}" alt="winner_img" onerror="this.onerror=null;this.src='assets/img/png/w.png';" style="width:50px;height:50px;" />
+                        </td> -->
+                       
+                        <td  style="text-align: center;">
+                            <span *ngIf="fd.competition == null">No Details</span>
+<span *ngIf="fd.competition" class="text-uppercase">{{fd.competition}}</span>
+
+                            </td>
+                        <td style="text-align: center;">
+                            <span *ngIf="fd.total_tickets == null">No Details</span>
+                            <span *ngIf="fd.total_tickets" class="text-uppercase">{{fd.total_tickets}}</span>
+                        </td>
+                        <td style="text-align: center;">
+                            <span *ngIf="fd.used_freetickets == null">No Details</span>
+                            <span class="text-uppercase">{{fd.used_freetickets}}</span>
+                    </td>
+                        <!-- <td *ngIf="fd.status == null" style="text-align: center;">No Details</td> -->
+                        <!-- <td *ngIf="fd.status == 0">
+                            <span class="badge badge-danger">Expired</span></td>
+                            <td *ngIf="at.status == 1">
+                            <span class="badge badge-success">Live</span></td> -->
+                        <!-- <td>
+                            <a class="btn lucky-dip" data-toggle="modal" data-target="#winnermodal" data-placement="bottom" (click)="winner_select()">Select</a>
+                        </td> -->
+                        <!-- <td>
+                            <a href="javascript:void(0)" style="" (click)='view_winner(wd)'>
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td> -->
+
+
+                    </tr>
+                    <tr *ngIf="emptymyfreeticketfdata" style="text-align:center">
+                        <td colspan="4">No Data Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

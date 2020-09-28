@@ -1,0 +1,33 @@
+<app-login-header></app-login-header>
+<div class="container containerajust">
+    <div class="row">
+
+        <div class="col-md-3">
+            <section class="section-padding">
+                <nav>
+                    <ul class="nav" style="display: unset;">
+                        <li *ngFor="let menuItem of menuItems" class="nav-item">
+                            <a *ngIf="menuItem.subMenu.length == 0" class="nav-link" href="javascript:void(0)" (click)="routingpath(menuItem.path)">
+                                <span> <i class="{{menuItem.icon}}"></i> {{menuItem.title}} <span *ngIf="menuItem.badgecls" class="{{menuItem.badgecls}}">{{rollovercompetitionlength}}</span></span>
+                            </a>
+                            <a *ngIf="menuItem.subMenu.length > 0" class="nav-link {{menuItem.class}}" href="javascript:void(0)">
+                                <span> <i class="{{menuItem.icon}}"></i> {{menuItem.title}}     <i style="float: right !important;" class="fa fa-caret-down"></i></span>
+                            </a>
+                            <div *ngIf="menuItem.subMenu.length > 0" class="dropdown-container">
+                                <span *ngFor="let sm of menuItem.subMenu">
+                                <a class="nav-link" (click)="routingpath(sm.path)" href="javascript:void(0)"> <i s class="{{sm.icon}}"></i> {{sm.title}}</a>
+                            </span>
+                              </div>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+        </div>
+        <div class="col-md-9">
+
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>
+<app-footer></app-footer>

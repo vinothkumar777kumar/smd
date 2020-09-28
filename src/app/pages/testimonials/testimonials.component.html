@@ -1,0 +1,38 @@
+<div class="container pagepadd">
+    <div class="row">
+        <div class="">
+            <div class="heading_blog">
+                <h2 class="border_yellow">Testimonials</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let ta of testimonialsarray;let i = index" style="margin-bottom: 30px;text-align: center;">
+            <a href="javascript:void(0)">
+            <div class="card" style="height: 460px !important">
+                <div class="card-header text-center" style="color: #000000;text-transform: uppercase;">
+                    {{ta.title}}
+                </div>
+                <img src="{{ta.image}}" alt="blog" class="card-img-top" onerror="this.onerror=null;this.src='assets/img/smd/logo.png';" style="height: 100px;width:100px;border-radius: 50%;margin: auto;left: 0;right: 0;">
+                <div class="card-body">
+                    <p class="card-text" style="text-transform: uppercase;">{{ta.name}}</p>
+                    <p class="card-text">{{ta.description}}</p>
+                </div>
+            </div>
+        </a>
+           
+        </div>
+        <div class="col-lg-12" *ngIf="emptytestimonialsdata">
+            <p >
+                No Data Found
+            </p>
+        </div>
+    </div>
+    <div *ngIf="isloading" class="row" style="text-align: center;margin-top: 20px;">
+        <div class="col-lg-12">
+            <span class="spinner-border text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+            </span>
+        </div>
+    </div>
+</div>

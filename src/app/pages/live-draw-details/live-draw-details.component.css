@@ -1,0 +1,80 @@
+frame {
+    width:400px;
+    height: 400px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url('./../../../assets/img/smd/logo.png')  
+}
+
+.frame iframe {
+  position: relative;
+  top: 165px;
+  left: 100px;
+  width: 250px;
+  }
+
+  .t1{
+    animation: t-animation 6s;
+  }
+
+  .t2{
+    animation: t-animation 6s;
+    animation-delay: 6s;
+  }
+
+  .flicker{
+    animation: flicker 10s infinite;
+  }
+
+  .end{
+    animation: end-animation 2s;
+    animation-delay: 12s;
+    animation-fill-mode: forwards; 
+  }
+
+  @keyframes t-animation {
+    0% {opacity: 0;}
+    30% {opacity: 1;}
+    70% {opacity: 1;}
+    100% {opacity: 0;}
+  }
+
+  @keyframes end-animation {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
+  @keyframes flicker {
+    40.1% {left:0px;top:0px;}
+    40.2% {left:10px;top:8px;}
+    40.3% {left:0px;top:0px;}
+  
+    90.1% {left:0px;top:0px;}
+    90.2% {left:-5px;top:3px;}
+    90.3% {left:0px;top:0px;}
+  }
+
+  /* .winner{
+    animation-delay: 1s;
+  }
+  .winner-det{
+    animation-delay: 3s;
+  } */
+
+  .iswinnersoon {
+    transition: all linear 0.5s;
+    background-color: lightblue;
+    height: 100px;
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  
+  .ng-hide {
+    height: 0;
+    width: 0;
+    background-color: transparent;
+    top:-200px;
+    left: 200px;
+  }

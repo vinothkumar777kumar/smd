@@ -1,0 +1,9 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }

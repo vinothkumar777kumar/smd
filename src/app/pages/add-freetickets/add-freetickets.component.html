@@ -1,0 +1,71 @@
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>{{title}}</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" (click)="gettoprevies()"><i class="fa fa-close"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="addfreeticketform">
+                <input type="hidden" name="id" formControlName="id" />
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Select Competition</label>
+                            <select class="form-control" name="competition_id" placeholder="Select Competition" style="padding: 8px;cursor: pointer;" id="competition" formControlName="competition_id" (change)="onchangecompetition($event)">
+                <option value="">Select Competition</option>
+                    <option *ngFor="let cd of competitionarray" [value]="cd.id">{{cd.competition}}</option>
+                </select>
+                            <div *ngIf="isSubmitted && formControls.competition_id.errors" class="help-block">
+                                <span *ngIf="formControls.competition_id.errors.required">
+                        competition is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Select Users</label>
+                            <ng-multiselect-dropdown name="user_id" class="form-control" [placeholder]="'Select user'" [data]="userdata" formControlName="user_id" [settings]="dropdownSettings" (onSelectAll)="onSelectAll($event)" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)"
+                                (click)="onCheck($event)" *ngIf="adduser_id">
+                            </ng-multiselect-dropdown>
+                            <input type="text" name="user_id" class="form-control" formControlName="user_id" *ngIf="edituser_id" [attr.disabled]=editdisablecompetition/>
+                            <!-- <select class="form-control" name="users" id="users" formControlName="users">
+                <option value="">Select User</option>
+                    <option *ngFor="let ud of userdata" [value]="ud.id">{{ud.name}}</option>
+                </select> -->
+                            <div *ngIf="isSubmitted && formControls.user_id.errors" class="help-block">
+                                <span *ngIf="formControls.user_id.errors.required">
+                        Users is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>No of Free Ticket Allocate</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="no_of_tickets" formControlName="no_of_tickets" placeholder="No of Ticket Allocate" (keypress)="numberOnly($event)" />
+                            <div *ngIf="isSubmitted && formControls.no_of_tickets.errors" class="help-block">
+                                <span *ngIf="formControls.no_of_tickets.errors.required">
+                                    No of Free Ticket Allocate is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-group pull-right">
+
+                    <button type="button" class="btn yellow-btn" [disabled]="!addfreeticketform.valid" (click)="save_addfreetickets()">
+                        <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>{{action}}</button>
+                </div>
+            </form>
+            <!-- {{addfreeticketform.value | json}} -->
+        </div>
+    </div>
+</div>

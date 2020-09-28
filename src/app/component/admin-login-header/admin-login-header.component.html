@@ -1,0 +1,49 @@
+<header class="header-area header-sticky navbar_header-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a  [routerLink]="['/home']" class="logo"><img style="width: 130px;height:130px" src="assets/img/smd/logo.png" /></a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section dropdown {{menu.class}}" style="{{menu.style}}" *ngFor="let menu of menuItems">
+                            <a *ngIf="menu.submenu.length == 0" [routerLink]="[menu.path]" style="{{menu.substyle}}" class="{{menu.subclass}}">{{menu.title}}<span class={{menu.icon}} style="font-size: 1rem;"></span>
+                               <span *ngIf="menu.title == 'Cart' && countcart.length == 0" class="{{menu.badgeclass}}">0</span>
+                            </a>
+                            <a *ngIf="menu.submenu.length > 0" class="dropdown-toggle" [routerLink]="[menu.path]">{{menu.title}}</a>
+                            <div *ngIf="menu.submenu.length > 0" class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: 0px !important;">
+                                <a *ngFor="let sm of menu.submenu" class="dropdown-item" [routerLink]="[sm.path]">{{sm.title}}</a>
+                            </div>
+                        </li>
+                        <!-- <li class="scroll-to-section dropdown" style="padding-left: 0;">
+                            <a class="dropdown-toggle">Competitions</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: 0px !important;">
+                                <a class="dropdown-item" [routerLink]="['/active-competitions']">Active Competitions</a>
+                                <a class="dropdown-item" [routerLink]="['/live-draws']">Live Draws</a>
+                                <a class="dropdown-item" [routerLink]="['/winners-podium']">Winner Podium</a>
+                            </div>
+                        </li>
+                        <li class="scroll-to-section" style="padding-left: 0;"><a [routerLink]="['/how_to_play']" class="">How to play</a></li>
+                        <li class="scroll-to-section" style="padding-left: 0;"><a [routerLink]="['/blog']" class="">Blog</a></li>
+                        <li class="scroll-to-section" style="padding-left: 0;"><a [routerLink]="['/my-account']">My Account</a></li>
+                        <li class="scroll-to-section cartli" style="background-color: #000000 !important;padding-left: 0;color: #fff !important;">
+                            <a class=" cart " style="background-color: #000000 !important;color: #fff !important; " [routerLink]="[ '/cart'] ">Cart <span class="fa fa-cart-arrow-down"></span></a></li> -->
+                    </ul>
+
+                    <a class="menu-trigger ">
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+                <!-- <div class="row " style="justify-content: flex-end; ">
+
+                    <p class="header-dragons-den-1 ">As seen on</p>
+                    <img style="height:30px " class="header-dragons-den-image " src="assets/img/home/bbc-logo.png " alt="Logo ">
+                    <p class="header-dragons-den-2 ">Dragon's Den </p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</header>

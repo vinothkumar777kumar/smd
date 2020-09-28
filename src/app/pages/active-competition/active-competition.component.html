@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-bordered" style="color: #fff;">
+                <thead>
+                    <tr>
+                        <td>S.No</td>
+                        <td>Competition</td>
+                        <!-- <td>Ticket Status</td> -->
+                        <td>Draw Start Date</td>
+                        <td>Draw End Date</td>
+                        <td>Sold Ticket</td>
+                        <td>Unsold Ticket</td>
+                        <!-- <td>Average sale per day</td> -->
+                        <td>Predition Days</td>
+                        <!-- <td>Edit</td> -->
+                        <!-- <td>Delete</td> -->
+                        <!-- <td>Edit</td> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cd of preditionarray;let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{cd.competition}}</td>
+                        <!-- <td>{{cd.ticketstatus}}</td> -->
+                        <td>{{cd.startDate}}</td>
+                        <td>{{cd.endDate}}</td>
+                        <td>{{cd.soldTickets}}</td>
+                        <td>{{cd.unsoldTickets}}</td>
+                        <!-- <td>{{cd.valid_to}}</td> -->
+                        <td>{{cd.average}}</td>
+                        <!-- <td>
+                        <a href="javascript:void(0)" style="" (click)='edit_coupon(cd)'>
+                            <button class="btn btn-sm btn-primary">
+                            <i class="fa fa-edit icon"></i>
+                        </button>
+                        </a>
+                    </td> -->
+                        <!-- <td>
+                        <a href="javascript:void(0)" style="" (click)='delete_coupon(cd)'>
+                            <button class="btn btn-sm btn-danger">
+                            <i class="fa fa-trash icon"></i>
+                        </button>
+                        </a>
+                    </td> -->
+                    </tr>
+                    <!-- <tr *ngIf="coupondata.length == 0">
+                    <td colspan="6">No Data Found</td>
+                </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

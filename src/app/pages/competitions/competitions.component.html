@@ -1,0 +1,221 @@
+<div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-lg-6">
+            <h4>Competitions</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/add-competition']"><i class="fa fa-plus"></i> Add Competition</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+               
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" cellspacing="0" width="100%" class="table table-bordered row-border hover" style="color: #fff;">
+                    <thead>
+                        <tr style="font-size: 13px;font-weight: bold;">
+                            <th >No</th>
+                            <th >Image</th>
+                            <th>Competition</th>
+                            <!-- <th  style="white-space: nowrap;">Total Tickets</th> -->
+                            <!-- <th style="white-space: nowrap;">Available Tickets</th> -->
+                            <th style="white-space: nowrap;">Draw Start Date</th>
+                            <th style="white-space: nowrap;">Draw End Date</th>
+                            <th style="white-space: nowrap;">Ticket Status</th>
+                            <th style="white-space: nowrap;">Stop Competition</th>
+                            <td>Edit</td>
+                            <!-- <td>Active</td>-->
+                            <!-- <th style="white-space: nowrap;">Change Draw Date</th> -->
+                            <th style="white-space: nowrap;">Add Video Link</th>
+                            <th>Rollover</th>
+                            <!-- <th>Status</th> -->
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cd of competitionsdata;let i = index" style="font-size: 13px;text-align: center;">
+                            <td>{{i+1}}</td>
+                            <td>
+                                <img src="{{cd.image}}" alt="win1" style="height: 45px;width: 50px;border-radius: 50%;" onerror="this.onerror=null;this.src='assets/img/smd/logo.png';" />
+                            </td>
+                            <td>{{cd.competition}}</td>
+                            <!-- <td>{{cd.totalTickets}}</td> -->
+                            <!-- <td>{{cd.availableTickets}}</td> -->
+                            <td>{{cd.draw_start_date_time}}</td>
+                            <td>{{cd.draw_end_date_time}}</td>
+                            <td>
+                                <a href="javascript:void(0)" style="color: #fff;" (click)="view_ticketstatus(cd)">
+                                    <button class="btn btn-sm btn-primary">
+                                <i class="fa fa-eye"></i></button>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)" style="color: #fff;" (click)="nullify(cd)">
+                                    <button class="btn btn-sm btn-primary">
+                               Nullify</button>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)" style="color: #fff;" (click)="edit_competition(cd)">
+                                    <button class="btn btn-sm btn-primary">
+                                <i class="fa fa-edit"></i></button>
+                                </a>
+                            </td>
+                            <!-- <td *ngIf="cd.is_active == 1">
+                            <span class="badge badge-success">Active</span>
+                        </td>
+                        <td *ngIf="cd.is_active == 0">
+                            <span class="badge badge-danger">Non-Active</span>
+                        </td> -->
+                            <!-- <td style="text-align: center;">
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#editdatemodal" data-placement="bottom" style="color: #fff;" (click)="editdate(cd)">
+                                    <button class="btn btn-sm btn-primary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                                </a>
+                            </td> -->
+                            <td style="text-align: center;">
+                                <a href="javascript:void(0)" style="color: #fff;" (click)="editvedio(cd)">
+                                    <button class="btn btn-sm btn-primary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                                </a>
+
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="javascript:void(0)" style="" (click)="rollover(cd)" style="color: #fff;">
+                                    <button class="btn btn-sm btn-primary">
+                                Rollover
+                            </button>
+                                </a>
+                            </td>
+                            <!-- <td>
+                                <ui-switch checked (change)="onChange($event)" size="small"></ui-switch>
+                            </td> -->
+                            <td style="text-align: center;">
+                                <a href="javascript:void(0)" style="" (click)="delete_competition(cd)" style="color: #fff;">
+                                    <button class="btn btn-sm btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="isloading">
+                            <td colspan="10" class="col-lg-12" style="text-align: center;">
+                                <span class="spinner-border text-warning" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr *ngIf="emptycompetitiondata" style="text-align:center">
+                            <td colspan="10">No Data Found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editdatemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="defaultModalLabel">Change Draw Date</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body" style="color: #000;">
+                <div class="row">
+                    <div class="col-md-6" style="margin: auto;">
+                        <form [formGroup]="editdateform">
+
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <div class='input-group'>
+                                    <input angular-mydatepicker type="text" name="draw_start_date_time" id="draw_start_date_time" class="form-control" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event,'start_date')" #dp="angular-mydatepicker" formControlName="draw_start_date_time"
+                                    />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                                    <a style="cursor: pointer;" class="fa fa-calendar" (click)="dp.toggleCalendar()"></a></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group">
+                                    <input type="hidden" name="competition_id" formControlname="competition_id" />
+                                    <input type="date" name="draw_start_date_time" id="draw_start_date_time" class="form-control" formControlName="draw_start_date_time" placeholder="Draw start Date" />
+                                    <div *ngIf="isSubmitted && formControls.draw_start_date_time.errors" class="help-block">
+                                        <span *ngIf="formControls.draw_start_date_time.errors.required">
+                                            Draw start Dateis required
+                                        </span>
+                                    </div>
+                                </div> -->
+
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <div class='input-group'>
+                                    <input angular-mydatepicker type="text" name="draw_end_date_time" id="draw_end_date_time" class="form-control" [options]="myDatePickerOptions1" (dateChanged)="onDateChanged($event,'end_date')" #dp1="angular-mydatepicker" formControlName="draw_end_date_time"
+                                    />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                                <a style="cursor: pointer;" class="fa fa-calendar" (click)="dp1.toggleCalendar()"></a></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn yellow-btn" (click)="update_date()">save</button>
+                            </div>
+                        </form>
+                        <!-- {{editdateform.value | json}} -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="editvediomodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="defaultModalLabel">Video Link</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body" style="color: #000;">
+                <div class="row">
+                    <div class="col-md-6" style="margin: auto;">
+                        <form [formGroup]="editvedioform">
+                            <input type="hidden" name="id" formControlName="id" >
+                            <div class="form-group">
+                                <!-- <label for="exampleInputEmail1">Vedio Url</label> -->
+                                <input type="text" name="video_url" class="form-control" placeholder="Video Url" id="" formControlName="video_url" />
+                            </div>
+                            <div class="form-group">
+                                <button class="btn yellow-btn" (click)="updatevedio()">Save</button>
+                            </div>
+                        </form>
+
+                        <!-- {{editvedioform.value | json}} -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>{{title}}</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/testimonialstable']"><i class="fa fa-close"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="testimonialsform">
+                <input type="hidden" name="id" formControlName="id">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor> -->
+                        <div class="form-group" *ngIf="showtestimoeditimage">
+                            <label>Select Image</label>
+                            <input type='file' class="form-control" name="image" formControlName="image" (change)="fileProgress($event)" />
+                            <div *ngIf="isSubmitted && formControls.image.errors" class="help-block">
+                                <span *ngIf="formControls.image.errors.required">
+                                    Image is required
+                    </span>
+                            </div>
+                        </div>
+                        <div *ngIf="showtestimoimage">
+                            <label> Image</label><br>
+                            <img src="{{testimo_image}}" alt="win1"
+                                style="height: 100px;width: 100px;border-radius: 50%;" onerror="this.onerror=null;this.src='assets/img/smd/logo.png';"/>
+                            <button class="delete-entry btn btn-danger btn-sm" style="cursor: pointer;"
+                                (click)="deleteblogImage()">
+                                Delete</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Name of The  Competitions</label>
+                            <div class='input-group'>
+                                <input type="text" name="title" formControlName="title" class="form-control" />
+                            </div>
+                            <div *ngIf="isSubmitted && formControls.title.errors" class="help-block">
+                                <span *ngIf="formControls.title.errors.required">
+                                    Competitions is required
+                                </span>
+                            </div>
+                        </div>
+                        </div>
+                    <!-- </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Name of The  Competitions</label>
+                            <ng-multiselect-dropdown name="competition" class="form-control" [placeholder]="'Select Competition'" [data]="competitionarray" formControlName="competition" [settings]="dropdownSettings" >
+                            </ng-multiselect-dropdown> -->
+                            <!-- <select class="form-control" name="competition" formControlName="competition" style="padding: 8px;cursor: pointer;" id="competition">
+                                <option value="0">Select Competition</option>
+                                    <option *ngFor="let cd of competitionarray" [value]="cd.id">{{cd.competition}}</option>
+                                </select>
+                            <input type="text" name="competition" class="form-control" formControlName="competition"/>
+                            <div *ngIf="isSubmitted && formControls.competition.errors" class="help-block">
+                                <span *ngIf="formControls.competition.errors.required">
+                                    Competition Name is required
+                    </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Select Users</label>
+                             <!-- <ng-multiselect-dropdown name="user_id" class="form-control" [placeholder]="'Select user'" [data]="userdata" formControlName="user_id" [settings]="dropdownSettings1">
+                            </ng-multiselect-dropdown> -->
+                            <!-- <input type="text" name="user_id" class="form-control" formControlName="user_id" *ngIf="edituser_id" [attr.disabled]=editdisablecompetition/> -->
+                            <select class="form-control" name="user_id" id="user_id" formControlName="user_id">
+                <option value="">Select User</option>
+                    <option *ngFor="let ud of userdata" [value]="ud.id">{{ud.name}}</option>
+                </select>
+                            <div *ngIf="isSubmitted && formControls.user_id.errors" class="help-block">
+                                <span *ngIf="formControls.user_id.errors.required">
+                        Users is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Is Active / In Active</label>
+                            <select class="form-control" name="status" formControlName="status">
+                               <option value="0">No</option>
+                               <option value="1">Yes</option>
+                           </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Comments</label>
+                            <textarea name="description" id="description" class="form-control" formControlName="description">  </textarea>
+                            <div *ngIf="isSubmitted && formControls.description.errors" class="help-block">
+                                <span *ngIf="formControls.description.errors.required">
+                                    Comments is required
+                                </span>
+                                <div *ngIf="formControls.description.errors.minlength">
+                                    Description must be at least 5 characters.
+                                </div>
+                                <div *ngIf="formControls.description.errors.maxlength">
+                                    Description must be max 200 characters.
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-12" style="text-align: end;">
+                        <div class="form-group">
+                            <label></label>
+                            <button class="btn yellow-btn" type="submit" value="Save" (click)="addtestimonials()">
+                                <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>{{action_btn}}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- {{testimonialsform.value | json}} -->
+        </div>
+    </div>
+</div>

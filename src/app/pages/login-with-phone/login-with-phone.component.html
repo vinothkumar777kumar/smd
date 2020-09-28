@@ -1,0 +1,46 @@
+<div class="container" style="padding: 30px 40px;">
+    <div class="row justify-content-center">
+
+        <div class="col-md-6 text-center">
+            <div class="login-card">
+                <h4>Verify Your Phone Number</h4>
+                <form [formGroup]="verifyphoneform">
+                    <div *ngIf="showalert" class="alert alert-success" role="alert" id="alerttext">
+                      </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
+                            </div>
+                            <input type="text" name="otp" placeholder="Email" formControlName="otp" class="form-control input-class" placeholder="Enter OTP" maxlength="6">
+
+                        </div>
+                        <div *ngIf="isSubmitted && formControls.otp.errors" class="help-block">
+                            <span *ngIf="formControls.otp.errors.required">
+                                OTP is required
+                            </span>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- <div class="input-field text-right">
+                        <a [routerLink]="['/forgot-password']">Forgot password?</a>
+                    </div> -->
+                    <div class="text-center input-field ">
+                        <button class="btn btn-block" (click)="verify()">Verify Phone Number</button>
+                        <!-- <a class="btn btn-sm yellow-btn login-btn"><i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i> Sign In</a> -->
+                    </div>
+                    <span>OR</span>
+                    <div class="text-center input-field ">
+                        <!-- <button  class="btn btn-block" [routerLink]="['/login']">SKIP</button> -->
+                        <button class="btn btn-block" (click)="skip()">Skip</button>
+                    </div>
+                </form>
+                <!-- <div class="input-field">
+                    <div class="input-wrap">Don't have an account? <a [routerLink]="['/register']">Register</a></div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

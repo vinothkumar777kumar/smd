@@ -1,0 +1,29 @@
+<div class="container pagepadd">
+    <div class="contentrow">
+        <div class="row" style="margin-bottom: 25px;">
+            <h2 class="border_yellow" style="border-bottom: 1px solid #000;">Sold Out</h2>
+        </div>
+        <div class="row">
+            <div *ngIf="isloading" class="col-lg-12" style="text-align: center;">
+                <span class="spinner-border text-warning" role="status">
+                    <span class="sr-only">Loading...</span>
+                </span>
+            </div>
+
+            <div class="col-md-4" style="margin-top: 30px;
+            margin-bottom: 30px;" *ngFor="let cd of soldoytarray">
+                <a class="single-competitions comp-bg-1" href="javascript:void(0)"  style="background-image: url({{cd.image}});">
+                    <div *ngIf="cd.sold == 'true'" class="ribbon ribbon-top-right yellow"><span>SOLD</span></div>
+                    <div class="sc-htpNat fPoByH">
+                        <!-- <div class="sc-bxivhb qqXnv">£{{cd.ticket_price}}</div> -->
+                        <div class="sc-ifAKCX hiinnP">£{{cd.ticket_price}}</div>
+                        <div class="sc-ifAKCX hiinnP" *ngIf="salepriceshow">£{{cd.sale_price}}</div>
+                    </div>
+                </a>
+                <p class="fcbottom_content">{{cd.competition}}</p>
+            </div>
+            <p class="nodatafoundhome" *ngIf="emptyfeatuiredarraydata">Coming Soon</p>
+
+        </div>
+    </div>
+</div>

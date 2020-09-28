@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-md-12">
+        <h5>My Transactions</h5>
+    </div>
+    <div class="col-md-12" style="justify-content: center;text-align: center;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" style="color: #fff;">
+                        <thead>
+                            <tr style="text-align: center;font-size: 13px;">
+                                <td>S.No</td>
+                                <!-- <td>User Name</td> -->
+                                <!-- <td>Ticket Status</td> -->
+                                <td>Competition</td>
+                                <td style="white-space: nowrap;">Booking Date</td>
+                                <td style="white-space: nowrap;">No of Tickets</td>
+                                <td style="white-space: nowrap;">Ticket Price</td>
+                                <td style="white-space: nowrap;">Total Price</td>
+                                <td>View</td>
+                                <!-- <td>Average sale per day</td> -->
+                                <!-- <td>Predition Days</td> -->
+                                <!-- <td>
+                                    View
+                                </td> -->
+                                <!-- <td>Edit</td> -->
+                                <!-- <td>Delete</td> -->
+                                <!-- <td>Edit</td> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cd of transactionarray;let i = index" style="text-align: center;font-size: 13px">
+                                <td>{{i + 1}}</td>
+                                <!-- <td *ngIf="cd.name == null">No Details</td> -->
+                                <!-- <td *ngIf="cd.name">{{cd.name}}</td> -->
+                                <!-- <td>{{cd.ticketstatus}}</td> -->
+                                <td *ngIf="cd.competition == null">No Details</td>
+                                <td *ngIf="cd.competition">{{cd.competition}}</td>
+                                <td *ngIf="cd.booking_date == null">No Details</td>
+                                <td *ngIf="cd.booking_date">{{cd.booking_date}}</td>
+                                <td>
+                                    <span *ngIf="cd.no_of_tickets == null">No Details</span>
+                                    <span *ngIf="cd.no_of_tickets">{{cd.no_of_tickets}}</span>
+                                </td>
+                                <td *ngIf="cd.sale_price == null">No Details</td>
+                                <td *ngIf="cd.sale_price">£ {{cd.sale_price}}</td>
+                                <td *ngIf="cd.total_price == null">No Details</td>
+                                <td *ngIf="cd.total_price">£ {{cd.total_price}}</td>
+                                <!-- <td>{{cd.valid_to}}</td> -->
+                                <!-- <td>{{cd.average}}</td> -->
+                                <td>
+                                    <a class="btn btn-primary btn-sm" (click)="viewtickets_data(cd)">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+                                <!-- <td>
+                            <a href="javascript:void(0)" style="" (click)='delete_coupon(cd)'>
+                                <button class="btn btn-sm btn-danger">
+                                <i class="fa fa-trash icon"></i>
+                            </button>
+                            </a>
+                        </td> -->
+                            </tr>
+                            <tr *ngIf="isloading">
+                                <td colspan="7" class="col-lg-12" style="text-align: center;">
+                                    <span class="spinner-border text-warning" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr *ngIf="emptytransactionarray">
+                                <td colspan="7">No Data Found</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- <p>No transactions found.</p> -->
+    </div>
+</div>

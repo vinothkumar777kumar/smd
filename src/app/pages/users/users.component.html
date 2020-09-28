@@ -1,0 +1,137 @@
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>Users</h4>
+        </div>
+        <!-- <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn"><i class="fa fa-plus"></i>Add</button>
+        </div> -->
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 table-responsive">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" style="color: #fff;">
+                <thead>
+                    <tr style="text-align: center;">
+                        <td>S.No</td>
+                        <td>Name</td>
+                        <td>Email</td>
+                        <td>Phone</td>
+                        <td>Status</td>
+                        <!-- <td>Edit</td> -->
+                        <td>Delete</td>
+                        <td>Details</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ud of userdata;let i =index" style="text-align: center;">
+                        <td>{{i + 1}}</td>
+                        <td>{{ud.name}}</td>
+                        <td>{{ud.email}}</td>
+                        <td>{{ud.phone}}</td>
+                        <td *ngIf="ud.active == 1">
+                            <span class="badge badge-warning">Active</span>
+                        </td>
+                        <td *ngIf="ud.active == 0">
+                            <span class="badge badge-danger">In-Active</span>
+                        </td>
+                        <!-- <td>
+                            <a href="javascript:void(0)" (click)="edituserdetails(ud)">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td> -->
+                        <td>
+                            <a href="javascript:void(0)" (click)="deleteuserdetails(ud)">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" (click)="showuserdetails(ud)">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="isloading">
+                        <td colspan="7" class="col-lg-12" style="text-align: center;">
+                            <span class="spinner-border text-warning" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="emptyusetrdata" style="text-align: center;">
+                        <td colspan="7">No Data Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="userdetailmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="defaultModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+           
+                <div class="modal-body" style="text-align: center;justify-content: center;">
+
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><b>Name</b></td>
+                                <td>
+                                    <span *ngIf="userdatadetails.name == null">No Details</span>
+                                    <span>{{userdatadetails.name}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Email ID</b></td>
+                                <td>
+                                    <span *ngIf="userdatadetails.email == null">No Details</span>
+                                    <span>{{userdatadetails.email}}</span>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Phone</b></td>
+                                <td>
+                                    <span *ngIf="userdatadetails.phone == null">No Details</span>
+                                    <span>{{userdatadetails.phone}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Address</b></td>
+                                <td>
+                                    <span *ngIf="userdatadetails.address_line_one == null">No Details</span>
+                                    <span>{{userdatadetails.address_line_one}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Town</b></td>
+                                <td>
+                                    <span *ngIf="userdatadetails.town == null">No Details</span>
+                                    <span>{{userdatadetails.town}}</span>                                
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Postcode</b></td>
+                                <td>
+                                    <span *ngIf="userdatadetails.postcode == null">No Details</span>
+                                    <span>{{userdatadetails.postcode}}</span>  
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 
+
+                </div>
+             
+            
+        </div>
+    </div>
+</div>

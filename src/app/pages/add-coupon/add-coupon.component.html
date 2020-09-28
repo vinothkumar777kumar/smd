@@ -1,0 +1,151 @@
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>{{title}}</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/coupon']"><i class="fa fa-close"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="addcouponform">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Select Competitions</label>
+                            <ng-multiselect-dropdown name="competition" class="form-control" [placeholder]="'Select Competition'" [data]="competitionarray" formControlName="competition" [settings]="dropdownSettings" (onSelectAll)="onSelectAll($event)" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)"
+                                (click)="onCheck($event)" >
+                            </ng-multiselect-dropdown>
+                            <!-- <input type="text" name="user_id" class="form-control" formControlName="user_id" *ngIf="edituser_id" [attr.disabled]=editdisablecompetition/> -->
+                            <div *ngIf="isSubmitted && formControls.competition.errors" class="help-block">
+                                <span *ngIf="formControls.competition.errors.required">
+                                    Competition is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Coupon</label>
+                            <input type="text" name="coupon" formControlName="coupon" class="form-control" />
+                            <div *ngIf="isSubmitted && formControls.coupon.errors" class="help-block">
+                                <span *ngIf="formControls.coupon.errors.required">
+                                    Coupon is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Coupon Code</label>
+                            <div class='input-group'>
+                                <input type="text" name="code" formControlName="code" class="form-control" />
+                                <div class="input-group-append">
+                                    <a class="input-group-text" id="basic-addon3" href="javascript:void(0)" (click)="randomnumber()"><i class="fa fa-random"></i></a>
+                                </div>
+                            </div>
+                            <div *ngIf="isSubmitted && formControls.code.errors" class="help-block">
+                                <span *ngIf="formControls.code.errors.required">
+                                    Coupon code is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Valid From</label>
+                            <div class='input-group'>
+                                <input angular-mydatepicker type="text" name="valid_from" id="valid_from" class="form-control" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event,'valid_from')" #dp="angular-mydatepicker" formControlName="valid_from" disabled style="background-color: #fff;"/>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                            <a style="cursor: pointer;" class="fa fa-calendar" (click)="dp.toggleCalendar()"></a></span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Valid To</label>
+                            <div class='input-group'>
+                                <input angular-mydatepicker type="text" name="valid_to" id="valid_to" class="form-control" [options]="myDatePickerOptions1" (dateChanged)="onDateChanged($event,'valid_to')" #dp1="angular-mydatepicker" formControlName="valid_to" disabled style="background-color: #fff;"/>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                            <a style="cursor: pointer;" class="fa fa-calendar" (click)="dp1.toggleCalendar()"></a></span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Coupon Type</label>
+                            <!-- <input type="text" class="form-control" name="coupon_type" formControlName="coupon_type" (keypress)="numberOnly($event)" /> -->
+                            <select class="form-control" name="coupon_type" formControlName="coupon_type" name="coupon_type">
+                               <option value="1">Amount</option>
+                               <option value="2">Percentage</option>
+                           </select>
+                           <div *ngIf="isSubmitted && formControls.coupon_type.errors" class="help-block">
+                            <span *ngIf="formControls.coupon_type.errors.required">
+                                Coupon type is required
+                </span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Coupon Value</label>
+                            <input type="text" class="form-control" name="coupon_value" formControlName="coupon_value" (keypress)="numberOnly($event)" />
+                            <div *ngIf="isSubmitted && formControls.coupon_value.errors" class="help-block">
+                                <span *ngIf="formControls.coupon_value.errors.required">
+                                    Coupon value is required
+                    </span>
+                            </div>
+                            <!-- <select class="form-control" name="coupon_value" formControlName="coupon_value">
+                               <option value="0">Select</option>
+                               <option value="1">10</option>
+                           </select> -->
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Minimum Cart Amount</label>
+                            <input type='text' class="form-control" name="min_cart_amount" formControlName="min_cart_amount" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Maximum Redeem Amount</label>
+                            <input type='text' class="form-control" name="max_redeem_amount" formControlName="max_redeem_amount" />
+                        </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Is Active / In Active</label>
+                            <select class="form-control" name="is_active" formControlName="is_active">
+                               <option value="0">No</option>
+                               <option value="1">Yes</option>
+                           </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-12" style="text-align: end">
+                        <div class="form-group">
+                            <button class="btn yellow-btn" type="submit" value="Save" (click)="addcoupon()">
+                                <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- {{addcouponform.value | json}} -->
+        </div>
+    </div>
+</div>

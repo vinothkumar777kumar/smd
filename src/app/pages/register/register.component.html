@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6 text-center">
+            <div class="login-card">
+                <h4>Register Account</h4>
+                <form [formGroup]="registrationform">
+                    <!-- <input type="hidden" name="active" formControlName="active" > -->
+                    <div class="form-group" style="margin-bottom: 30px !important;">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="email" name="name" placeholder="Full Name" formControlName="name" class="form-control input-class">
+
+                        </div>
+                        <div *ngIf="isSubmitted && formControls.name.errors" class="help-block">
+                            <span style="font-size: 15px;" *ngIf="formControls.name.errors.required">
+                                Name is required
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="email" name="email" placeholder="Email" formControlName="email" class="form-control input-class" style="width: 74%;"><br>
+                            <span style="font-size: 13px;color:#a8a9b0;">The email will be validated once you submit this form.</span>
+                        </div>
+                        <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+                            <span style="font-size: 15px;" *ngIf="formControls.email.errors.required">
+                               Email is required
+                            </span>
+                            
+                        </div>
+
+                        <!-- <span *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+                            <span *ngIf="formControls.password.errors.required"><h5 style="color: red;">password is required</h5></span>
+                                                  <span *ngIf="formControls.password.errors && (registrationForm.get('password').touched || registrationForm.get('password').dirty)">
+                              <h5 style="color: red;">Password must be 8 characters, 1 upper case letter, and 1 special character</h5>
+                              </span>
+                                                  </span> -->
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="password" name="password" placeholder="Password" formControlName="password" class="form-control input-class" autocomplete="off">
+                            <span style="font-size: 13px;color:#a8a9b0;">password must be 8 characters, 1 upper case letter, and 1 special character</span>
+                        </div>
+                        <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+                            <span style="font-size: 15px;" *ngIf="formControls.password.errors.required">
+                               Password is required
+                            </span>
+                            <span style="font-size: 15px;" *ngIf="formControls.password.errors && (formControls.password.touched || formControls.password.dirty)">
+                                password must be 8 characters, 1 upper case letter, and 1 special character
+                                </span>
+                        </div>
+
+                        <!-- <span *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+                            <span *ngIf="formControls.password.errors.required"><h5 style="color: red;">password is required</h5></span>
+                                                  <span *ngIf="formControls.password.errors && (registrationForm.get('password').touched || registrationForm.get('password').dirty)">
+                              <h5 style="color: red;">Password must be 8 characters, 1 upper case letter, and 1 special character</h5>
+                              </span>
+                                                  </span> -->
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
+                            </div>
+                            <input (keyup.enter)="sentotp($event)"  (paste)="sentotp($event)" (input)="sentotp($event)"  type="text" name="phone" placeholder="Phone" 
+                            formControlName="phone" (keypress)="numberOnly($event)" maxlength="11" 
+                            class="form-control input-class"><br>
+                            <span style="font-size: 13px;color:#a8a9b0;">You could have the mobile number validated at your convenience. This is the number we would get in touch when you win a competition.</span>
+                        </div>
+                        <div *ngIf="isSubmitted && formControls.phone.errors" class="help-block">
+                            <span style="font-size: 15px;" *ngIf="formControls.phone.errors.required">
+                                Phone is required
+                            </span>
+                        </div>
+                    </div>
+                    <p>By creating your account,you agree to our <a style="color:#fdcc03;" href="javascript:void(0)" [routerLink]="['/tnc']">Term &amp; Conditions</a></p>
+                    <div class="text-center input-field ">
+                        <button class="btn yellow-btn btn-block" type="submit" (click)="register()" [attr.disabled] = "disableregister == true ? 'disabled' : null ">
+                            <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>Register</button>
+                    </div>
+                    <input type="hidden"  name="verification_code" [(ngModel)]="verification_code"  formControlName="verification_code"  />
+                </form>
+                <!-- {{registrationform.value | json}} -->
+                <div class="input-field">
+                    <div class="input-wrap">Already have account?<a [routerLink]="['/login']">&nbsp;Login</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="otpmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="otpmodellabel">Phone number Verification</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+        <div class="form-group">
+            <small id="emailHelp" class="form-text text-muted">Enter the Otp Which sends to Your Mobile Number</small>
+       <input [(ngModel)]="otptext"  type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter OTP">
+       <small *ngIf="mismatch" class="form-text text-danger">Invalid OTP .. Please try again</small>
+
+       <p [hidden]="timerhidden" class="text-info">{{timeLeft}} Seconds Left....</p> 
+       <button type="button" (click)="fn_resendotp()" [disabled]="btndisabled" class="btn btn-primary mt-2">Resend OTP</button>
+      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" [disabled]="otptext===''" (click)="fn_verifiy_otp();" class="btn btn-primary">Verify</button>
+        </div>
+      </div>
+    </div>
+  </div>

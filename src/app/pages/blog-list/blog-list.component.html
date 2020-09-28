@@ -1,0 +1,72 @@
+<div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-lg-6">
+            <h4>Blog List</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/add-blog']"><i class="fa fa-plus"></i> Add</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" style="color: #fff;">
+                <thead>
+                    <tr style="text-align: center;font-size: 13px;">
+                        <th>S.No</th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <!-- <th style="width: 75px;">Description</th> -->
+                        <th style="width: 75px;">Published</th>
+                        <th>View</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <!-- <td>Edit</td> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let bd of blogarraydata;let i = index" style="text-align: center;font-size: 13px;">
+                        <td>{{i + 1}}</td>
+                        <td>
+                            <img src="{{bd.image}}" alt="blog" style="height: 45px;width: 50px;border-radius: 50%;"  onerror="this.onerror=null;this.src='assets/img/smd/logo.png';" />
+                        </td>
+                        <td>{{bd.title}}</td>
+                        <!-- <td style="white-space: nowrap;"><span [innerHTML]="bd.description"></span></td> -->
+                        <td style="white-space: nowrap;">{{bd.published_at}}</td>
+                        <td>
+                            <a href=" javascript:void(0) " style=" " (click)='view_blog(bd)'>
+                                <button class="btn btn-sm btn-primary ">
+                                <i class="fa fa-eye icon "></i>
+                            </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href=" javascript:void(0) " style=" " (click)='edit_blog(bd)'>
+                                <button class="btn btn-sm btn-primary ">
+                                <i class="fa fa-edit icon "></i>
+                            </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0) " style=" " (click)='delete_blog(bd)'>
+                                <button class="btn btn-sm btn-danger ">
+                                <i class="fa fa-trash icon "></i>
+                            </button>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="isloading ">
+                        <td colspan="7" class="col-lg-12 " style="text-align: center; ">
+                            <span class="spinner-border text-warning " role="status ">
+                                <span class="sr-only ">Loading...</span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="emptyblogdata " style="text-align:center ">
+                        <td colspan="7">No Data Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

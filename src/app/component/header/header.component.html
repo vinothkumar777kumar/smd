@@ -1,0 +1,63 @@
+<header class="header-area header-sticky">
+    <!-- header mobile menu -->
+    <!-- header-area header-sticky -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <label class="menu-trigger" for="chkToggle">
+                        <span>Menu</span>
+                    </label>
+                    
+                    <!-- ***** Logo Start ***** -->
+                    <a href="javascript:void(0)" [routerLink]="['/home']" class="logo"><img style="width: 130px;height:130px" src="assets/img/smd/logo.png" /></a>
+                    <!-- <input class="menu-btn" type="checkbox" id="menu-btn" /> -->
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                    <ul class="nav">
+                        <!-- menu -->
+                        <!-- nav -->
+                        <li class="scroll-to-section dropdown nav-links {{menu.class}}" style="{{menu.style}}" *ngFor="let menu of menuItems">
+                            <a *ngIf="menu.submenu.length == 0" [routerLink]="[menu.path]"  href="javascript:void(0)" style="{{menu.substyle}}" class="{{menu.subclass}}">{{menu.title}}<span class={{menu.icon}}></span>
+                                <span *ngIf="menu.title == 'Cart' && countcart.length == 0" class="{{menu.badgeclass}}">{{length_cart}}</span>
+                            </a>
+                            <a *ngIf="menu.submenu.length > 0" class="dropdown-toggle">{{menu.title}}<span class={{menu.icon}}></span></a>
+                            <div *ngIf="menu.submenu.length > 0" class="dropdown-menu" aria-labelledby="navbarDropdown" style="left: 0px !important;">
+                                <a *ngFor="let sm of menu.submenu" class="dropdown-item" [routerLink]="[sm.path]">{{sm.title}}</a>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                    <!-- <ul class="nav">
+                        <li class="scroll-to-section"><a [routerLink]="['/Home']" class="">Home</a></li>
+                        <li class="scroll-to-section dropdown"><a href="#features" class="dropdown-toggle">Competitions</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" [routerLink]="['/active-competitions']">Active Competitions</a>
+                                <a class="dropdown-item" [routerLink]="['/live-draws']">Live Draws</a>
+                                <a class="dropdown-item" [routerLink]="['/winners-podium']">Winner Podium</a>
+                            </div>
+                        </li>
+                        <li class="scroll-to-section"><a [routerLink]="['/how_to_play']" href="#our-classes" class="">How to play</a></li>
+                        <li class="scroll-to-section"><a [routerLink]="['/blog']" href="#schedule" class="">Blog</a></li>
+                        <li class="main-button"><a class="auth" [routerLink]="['/login']">Login</a></li>
+                        <li class="main-button"><a class="auth" [routerLink]="['/register']">Register</a></li>
+                    </ul> -->
+
+                    
+                    <!-- ***** Menu End ***** -->
+                </nav>
+               
+                <nav class="mobile-menu">
+                    
+                    <div class="slicknav_menu"><a href="#" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style="outline: none;"><span class="slicknav_menutxt"></span><span class="slicknav_icon slicknav_no-text"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><ul class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;"><li><a aria-current="page" class="active" href="/" role="menuitem" tabindex="-1">Home</a></li><li class="slicknav_collapsed slicknav_parent"><a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;"><a tabindex="-1">Competitions <i class="fa fa-angle-down"></i></a><span class="slicknav_arrow">►</span></a><ul role="menu" class="slicknav_hidden" aria-hidden="true" style="display: none;"><li><a href="/active-competitions" role="menuitem" tabindex="-1">Active Competitions</a></li><li><a href="/live-draws" role="menuitem" tabindex="-1">Live Draws</a></li><li><a href="/winners-podium" role="menuitem" tabindex="-1">Winner Podium</a></li></ul></li><li><a href="/how_to_play" role="menuitem" tabindex="-1">How to play</a></li><li><a href="/blog" role="menuitem" tabindex="-1">Blog</a></li><li class="no-hover-style"><a href="/login" role="menuitem" tabindex="-1"><div class="text-center input-field "><input type="button" value="Login"></div></a></li><li class="no-hover-style"><a href="/register" role="menuitem" tabindex="-1"><div class="text-center input-field "><input type="button" value="Register"></div></a></li><li class="slicknav_txtnode"></li></ul></div></nav>
+                <!-- <div class="row" style="justify-content: flex-end;">
+
+                    <p class="header-dragons-den-1">As seen on</p>
+                    <img style="height:30px" class="header-dragons-den-image" src="assets/img/home/bbc-logo.png" alt="Logo">
+                    <p class="header-dragons-den-2">Dragon's Den </p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</header>

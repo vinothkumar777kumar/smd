@@ -1,0 +1,65 @@
+<div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-lg-6">
+            <h4>Active Competition</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/dashboard']"><i class="fa fa-close"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" style="color: #fff;">
+                    <thead>
+                        <tr style="font-size: 13px;font-weight: bold;text-align: center;">
+                            <td>S.No</td>
+                            <td>Competition</td>
+                            <!-- <td>Ticket Status</td> -->
+                            <td style="white-space: nowrap;">Draw Start Date</td>
+                            <td style="white-space: nowrap;">Draw End Date</td>
+                            <td style="white-space: nowrap;">Sold Ticket</td>
+                            <td style="white-space: nowrap;">Unsold Ticket</td>
+                            <!-- <td>Average sale per day</td> -->
+                            <td style="white-space: nowrap;">Prediction Days</td>
+                            <td>
+                                View
+                            </td>
+                            <!-- <td>Edit</td> -->
+                            <!-- <td>Delete</td> -->
+                            <!-- <td>Edit</td> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cd of preditionarray;let i = index" style="font-size: 14px;text-align: center;">
+                            <td>{{i + 1}}</td>
+                            <td>{{cd.competition}}</td>
+                            <!-- <td>{{cd.ticketstatus}}</td> -->
+                            <td>{{cd.startDate}}</td>
+                            <td>{{cd.endDate}}</td>
+                            <td>{{cd.soldTickets}}</td>
+                            <td>{{cd.unsoldTickets}}</td>
+                            <!-- <td>{{cd.valid_to}}</td> -->
+                            <td>{{cd.average}}</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" (click)="viewchart_data(cd)">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </td>
+                            <!-- <td>
+                        <a href="javascript:void(0)" style="" (click)='delete_coupon(cd)'>
+                            <button class="btn btn-sm btn-danger">
+                            <i class="fa fa-trash icon"></i>
+                        </button>
+                        </a>
+                    </td> -->
+                        </tr>
+                        <tr *ngIf="preditionarray.length == 0" style="text-align:center">
+                            <td colspan="8">No Data Found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+.clicked {
+    background-color: green;
+    border: 1px solid green;
+    outline: none;
+    color: #fff;
+}
+
+.green {
+    border: 1px solid rgb(66, 65, 65);
+    background-color: rgb(66, 65, 65);
+    color: #fff;
+}
+
+.disabled.error {
+    background-color: rgb(66, 65, 65);
+  }
+  

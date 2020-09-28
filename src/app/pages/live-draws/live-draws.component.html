@@ -1,0 +1,115 @@
+<div class="container pagepadd">
+    <div class="contentrow">
+        <div class="row" style="margin-bottom: 25px;">
+            <h2 class="border_yellow" style="border-bottom: 1px solid #000;">Live Draws</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4" style="margin-top: 30px;
+        margin-bottom: 30px;" *ngFor="let ld of livedrawarray;let i = index">
+                <a class="draw-info" href="javascript:void(0)" (click)="livedraw_details(ld)">
+                    <div class="single-box">
+                        <div *ngIf="ld.islivedraw_finish == true" class="ribbon ribbon-top-right yellow"><span>JUST
+                                ENDED</span></div>
+                        <div class="colored-box-style"><img src="{{ld.image}}" alt=""
+                                onerror="this.onerror=null;this.src='assets/img/smd/logo.png';"></div>
+                        <div class="draw-content-wrap">
+                            <h6 title="ALL NEW AMAZON ALEXA" *ngIf="ld.competition == null">No Details</h6>
+                            <h6 title="ALL NEW AMAZON ALEXA" *ngIf="ld.competition">{{ld.competition}}</h6>
+                            <div class="owl-carousel single-draw-slider owl-loaded owl-drag">
+                                <div class="owl-stage-outer">
+                                    <div class="owl-stage"
+                                        style="transform: translate3d(-682px, 0px, 0px); transition: all 0s ease 0s; width: 1705px;">
+                                        <div class="owl-item cloned"
+                                            style="width: 331px;height: 230px;margin-right: 10px;">
+                                            <div class="draw-thumbnail"><img src="{{ld.image}}" alt=""
+                                                    style="height: 210px;"
+                                                    onerror="this.onerror=null;this.src='assets/img/smd/logo.png';">
+                                            </div>
+                                        </div>
+                                        <div class="owl-item cloned"
+                                            style="width: 331px;height: 230px;margin-right: 10px;">
+                                            <div class="draw-thumbnail"><img src="{{ld.image}}" alt=""
+                                                    style="height: 210px;"
+                                                    onerror="this.onerror=null;this.src='assets/img/smd/logo.png';">
+                                            </div>
+                                        </div>
+                                        <div class="owl-item active"
+                                            style="width: 331px;height: 230px !important;margin-right: 10px;">
+                                            <div class="draw-thumbnail"><img src="{{ld.image}}" alt=""
+                                                    style="height: 230px !important;"
+                                                    onerror="this.onerror=null;this.src='assets/img/smd/logo.png';">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="owl-nav disabled"><button type="button" role="presentation"
+                                        class="owl-prev"><i class="fa fa-long-arrow-left"></i></button><button
+                                        type="button" role="presentation" class="owl-next"><i
+                                            class="fa fa-long-arrow-right"></i></button></div>
+                                <div class="owl-dots disabled"></div>
+                            </div>
+                            <p class="draw-time">{{ld.draw_time}}</p>
+                            <p>Live Draw In:</p>
+                            <div class="countdown-timer">
+                                <div class="sc-jKJlTe fqglqt row" style="text-align: center;justify-content: center;">
+                                    <div class="sc-eNQAEJ cbqSkF col-md-1 col-2" id="days_{{i}}">
+                                        <p class="sc-kEYyzF dPulTW" id="day_{{i}}"></p>
+                                        <h1 class="sc-hMqMXs cxsxAA">Days</h1>
+                                    </div>
+                                    <div class="sc-eNQAEJ cbqSkF col-md-1 col-2" id="hrs_{{i}}">
+                                        <p class="sc-kEYyzF dPulTW" id="hours_{{i}}"></p>
+                                        <h1 class="sc-hMqMXs cxsxAA">Hrs</h1>
+                                    </div>
+                                    <div class="sc-eNQAEJ cbqSkF col-md-1 col-2">
+                                        <p class="sc-kEYyzF dPulTW" id="minuts_{{i}}"></p>
+                                        <h1 class="sc-hMqMXs cxsxAA">Min</h1>
+                                    </div>
+                                    <div class="sc-eNQAEJ cbqSkF col-md-1 col-2">
+                                        <p class="sc-kEYyzF dPulTW" id="sec_{{i}}"></p>
+                                        <h1 class="sc-hMqMXs cxsxAA">Sec</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 
+                            <div id="clockdiv">
+                                <div>
+                                    <span class="days"></span>
+                                    <div class="smalltext">Days</div>
+                                </div>
+                                <div>
+                                    <span class="hours"></span>
+                                    <div class="smalltext">Hours</div>
+                                </div>
+                                <div>
+                                    <span class="minutes"></span>
+                                    <div class="smalltext">Minutes</div>
+                                </div>
+                                <div>
+                                    <span class="seconds"></span>
+                                    <div class="smalltext">Seconds</div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="row" *ngIf="emptylivedrawarray">
+                <div class="col">
+                    <div class="text-md">No Live Draw</div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div *ngIf="isLoading" class="row" style="text-align: center;margin-top: 20px;">
+            <div class="col-lg-12">
+                <span class="spinner-border text-warning" role="status">
+                    <span class="sr-only">Loading...</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

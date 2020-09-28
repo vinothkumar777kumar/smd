@@ -1,0 +1,128 @@
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>Edit User</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/users']"><i class="fa fa-close"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <form [formGroup]="edituserform">
+                    <input type="hidden"  name="id" formControlName="id" />
+                    <div class="row">
+                        <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <label></label>
+                                <input type="file" class="form-control" placeholder="Add profile Image" name="profile_image" formControlName="profile_image" (change)="fileProgress($event)" />
+            
+                            </div>
+                        </div> -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label></label>
+                                <input type="text" class="form-control" placeholder="Full Name" name="name" formControlName="name" />
+                                <span *ngIf="isSubmitted && formControls.name.errors" class="help-block">
+                                    <span *ngIf="formControls.name.errors.required">
+                                        Name is required
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+            
+                            <div class="form-group">
+                                <label></label>
+                                <input type="email" class="form-control" placeholder="Email" name="email" formControlName="email"/>
+                                <span *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+                                    <span *ngIf="formControls.email.errors.required">
+                                        Email is required
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label></label>
+                                <input type="text" class="form-control" placeholder="Address" name="address_line_one" formControlName="address_line_one" />
+                                <!-- <textarea class="form-control" placeholder="Address 1" name="address_line_one" formControlName="address_line_one"></textarea> -->
+                                <span *ngIf="isSubmitted && formControls.address_line_one.errors" class="help-block">
+                                    <span *ngIf="formControls.address_line_one.errors.required">
+                                        Address 1 is required
+                                    </span>
+                                </span>
+            
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label></label>
+                                <input type="text" class="form-control" placeholder="Post Code" name="postcode" formControlName="postcode" />
+                                <span *ngIf="isSubmitted && formControls.postcode.errors" class="help-block">
+                                    <span *ngIf="formControls.postcode.errors.required">
+                                        Postcode is required
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <label></label>
+                                <textarea class="form-control" placeholder="Address 2" name="address_line_two" formControlName="address_line_two"></textarea>
+                                <span *ngIf="isSubmitted && formControls.address_line_two.errors" class="help-block">
+                                    <span *ngIf="formControls.address_line_two.errors.required">
+                                        Address 2 is required
+                                    </span>
+                                </span>
+            
+                            </div>
+                        </div> -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label></label>
+                                <input type="text" class="form-control" placeholder="Phone Number" name="phone" formControlName="phone" (keypress)="numberOnly($event)" maxlength="11" />
+                                <span *ngIf="isSubmitted && formControls.phone.errors" class="help-block">
+                                    <span *ngIf="formControls.phone.errors.required">
+                                        Phone is required
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label></label>
+                                <input type="text" class="form-control" placeholder="Town" name="town" formControlName="town" />
+                                <span *ngIf="isSubmitted && formControls.town.errors" class="help-block">
+                                    <span *ngIf="formControls.town.errors.required">
+                                        Town is required
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="form-control" name="status" formControlName="status">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label></label>
+                                <div class="text-center input-field ">
+                                    <button type="submit" class="btn btn-block yellow-btn" style="padding: .375rem .75rem;" (click)="updateusert()">
+                                        <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i> Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            <!-- {{myaccountform.value | json}} -->
+            </div>
+        </div>
+    </div>
+</div>

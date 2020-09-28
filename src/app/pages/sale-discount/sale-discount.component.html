@@ -1,0 +1,146 @@
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>Sale Discount</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/sale-discount-list']"><i class="fa fa-close"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <form [formGroup]="salediscountform">
+                <!-- <input type="hidden" name="competition_id" formControlName="competition_id" /> -->
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Select Competition</label>
+                            <select class="form-control" name="competition" placeholder="Select Competition" id="competition" formControlName="competition" (change)="change_competition($event)">
+                <option value="">Select Competition</option>
+                    <option *ngFor="let cd of competitionarray" [value]="cd.id">{{cd.competition}}</option>
+                </select>
+                            <div *ngIf="isSubmitted && formControls.competition.errors" class="help-block">
+                                <span *ngIf="formControls.competition.errors.required">
+                        competition is required
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Discount Date</label>
+                            <div class='input-group'>
+                                <input angular-mydatepicker type="text" class="form-control" name="competition_date" [options]="myDatePickerOptions" #dp1="angular-mydatepicker" (dateChanged)="onDateChanged($event,'start_date')" formControlName="competition_date" placeholder="Discount Date"
+                                />
+                                <div class=" input-group-append ">
+                                    <span class="input-group-text "> <a style="cursor: pointer; " class="fa fa-calendar " (click)="dp1.toggleCalendar() "></a></span>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row" *ngIf="isloading">
+                    <div class="col-lg-12" style="text-align: center;">
+                        <span class="spinner-border text-warning" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="isselectcompetitiondate">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Select Discount Date</h5>
+                            </div>
+                            <!-- <div class="col-md-6" style="text-align: right;">
+                                <input type="checkbox" (change)="discountchangeprice_all($event,i)" /> Same discount price
+                            </div> -->
+                        </div>
+
+
+                        <div formArrayName="competitiondate" *ngFor="let date of salediscountform.get('competitiondate')['controls'];let i = index;">
+                            <div class="row" [formGroupName]="i">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input type="text" class="form-control" placeholder="date" formControlName="date" name="date" [attr.disabled]='true' />
+                                        <input type="checkbox" (change)="discountchange($event,i)" name="change_discount" formControlName="change_discount" /> Change discount price?
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Discount Type</label>
+                                        <!-- <input type="text" class="form-control" name="coupon_type" formControlName="coupon_type" (keypress)="numberOnly($event)" /> -->
+                                        <select class="form-control" name="discount_type" formControlName="discount_type" name="discount_type">
+                                           <option value="1">Amount</option>
+                                           <option value="2">Percentage</option>
+                                       </select>
+                                    </div>
+                                </div>
+                                <div class=" col-lg-4">
+                                    <div class="form-group ">
+                                        <label>Discount Price * </label>
+                                        <div class='input-group'>
+                                            <input type="text " class="form-control" name="discount_price" formControlName="discount_price" placeholder="Discount price" [attr.disabled]="true" (keypress)="numberOnly($event)" style="background-color: #fff;">
+                                            
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"> <i class="fa fa-gbp"></i></span>
+                                            </div>
+                                            
+                                        </div>
+                                        <span style="font-size: 10px;">The price displayed in the box is the current price</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" *ngIf="salediscountupdatebtn">
+                                    <div class="btn-group pull-right ">
+                                        <button type="button " class="btn yellow-btn" (click)="update_salediscount(date)">
+                                                    <i class="fa " [ngClass]="{ 'fa-spin fa-spinner': isLoading} "></i>Update</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                   
+                    <!-- <div class="col-md-3 " *ngFor="let date of selectedcamparray_date ">
+                            <div class="card ">
+                                <div class="card-body " style="text-align: center; ">
+                                    <h5> {{date}}</h5>
+                                    <span>{{starttime}} - {{endtime}}</span>
+                                </div>
+                            </div>
+                        </div> -->
+               
+                <!-- <div class="col-md-6 ">
+                    <div class="form-group ">
+                        <label>Discount Price</label>
+                        <input type="text " class="form-control " name="discount_price " formControlName="discount_price " placeholder="Discount price ">
+                    </div>
+                </div> -->
+
+
+
+
+                
+                    <div class="col-md-12" *ngIf="salesavebtn">
+                        <div class="btn-group pull-right ">
+
+                            <button type="button " class="btn yellow-btn" (click)="save_salediscount()">
+                                        <i class="fa " [ngClass]="{ 'fa-spin fa-spinner': isLoading} "></i>Save</button>
+                        </div>
+                    </div>
+                </div>
+<div class="row" *ngIf="noactivecompetiton" style="text-align: center;">
+    <div class="col-lg-12">
+        <p>No sale date to this competition.</p>
+    </div>
+</div>
+            </form>
+        </div>
+    </div>
+    <!-- {{salediscountform.value | json}} -->
+
+</div>

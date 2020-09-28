@@ -1,0 +1,67 @@
+<div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-5">
+            <h4>Winner</h4>
+        </div>
+        <div class="col-md-4" style="text-align: end;">
+            <!-- <button class="btn btn-sm yellow-btn" [routerLink]="['/add-winner']"><i class="fa fa-plus"></i> Add</button> -->
+
+            <select class="form-control" name="competition" id="competition" style="background-color: #fdcc03;color: #000000;
+        ">
+                <option value="0">Select Competition</option>
+                    <option *ngFor="let cd of competitionarray" [value]="cd.id">{{cd.competition}}</option>
+                </select>
+        </div>
+        <div class="col-md-3" style="text-align: right;">
+            <button class="btn btn-sm yellow-btn" (click)="selectrandomwinner()">Select Winner</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" style="color: #fff;">
+                <thead>
+                    <tr style="text-align: center;">
+                        <td>S.No</td>
+                        <td>Profile image</td>
+                        <td>Name</td>
+                        <td>Competition</td>
+                        <td>Ticket</td>
+                        <!-- <td>Edit</td> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let wd of winnerdata;let i =index;" style="text-align: center">
+                        <td>{{i + 1}}</td>
+                        <td style="text-align: center;">
+                            <img style="width: 50px;height:50px;border-radius: 50%;" src="{{wd.profile_image}}" alt="winner_img" onerror="this.onerror=null;this.src='assets/img/png/w.png';" />
+                        </td>
+                        <td>{{wd.name}}</td>
+                        <td>{{wd.competitionname}}</td>
+                        <td class="text-uppercase"> {{wd.ticket_number}}</td>
+                        <!-- <td>
+                            <a class="btn lucky-dip" data-toggle="modal" data-target="#winnermodal" data-placement="bottom" (click)="winner_select()">Select</a>
+                        </td> -->
+                        <!-- <td>
+                            <a href="javascript:void(0)" style="" (click)='view_winner(wd)'>
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td> -->
+
+
+                    </tr>
+                    <tr *ngIf="isloading">
+                        <td colspan="5" class="col-lg-12" style="text-align: center;">
+                            <span class="spinner-border text-warning" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="emptywinnerdata" style="text-align:center">
+                        <td colspan="7">No Data Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

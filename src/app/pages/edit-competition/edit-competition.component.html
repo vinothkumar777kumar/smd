@@ -1,0 +1,196 @@
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4 style="white-space: nowrap;">Edit Competition - <span style="color: #fdcc03;">
+                    {{competitionname}}</span></h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/competitions']"><i class="fa fa-close"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <aw-wizard>
+                <aw-wizard-step stepTitle="Competition" [canExit]="canExitStep1">
+                    <form [formGroup]="competitionform">
+                        <input type="hidden" name="competition_id" formControlName="competition_id" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group" *ngIf="showselectcompetitionimage">
+                                    <label>Select Image</label>
+                                    <input type='file' class="form-control" name="image" formControlName="image"
+                                        (change)="fileProgress($event)" />
+
+                                </div>
+                                <div *ngIf="showcompetitionimage">
+                                    <label>Competition Image</label><br>
+                                    <img src="{{update_image}}" alt="win1"
+                                        style="height: 100px;width: 100px;border-radius: 50%;" onerror="this.onerror=null;this.src='assets/img/smd/logo.png';"/>
+                                    <button class="delete-entry btn btn-danger btn-sm" style="cursor: pointer;"
+                                        (click)="deleteImage()">
+                                        Delete</button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Competition</label>
+                                    <input type='text' class="form-control" name="competition"
+                                        formControlName="competition" />
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea type='text' class="form-control" name="description"
+                                        formControlName="description" style="height: 130px;"></textarea>
+                                    <div *ngIf="competitionformControls.description.errors && isSubmitted != null && !isSubmitted"
+                                        class="help-block">
+                                        <div *ngIf="competitionformControls.description.errors.minlength">
+                                            Description must be at least 5 characters long.
+                                        </div>
+                                        <div *ngIf="competitionformControls.description.errors.maxlength">
+                                            Description can be max 30 characters long.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Start Date</label>
+                                    <div class='input-group'>
+                                        <input angular-mydatepicker type="text" class="form-control"
+                                            name="draw_start_date_time" [options]="myDatePickerOptions"
+                                            #dp1="angular-mydatepicker"
+                                            (dateChanged)="onDateChanged($event,'start_date')"
+                                            formControlName="draw_start_date_time" disabled
+                                            style="background-color: #fff;" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text"> <a style="cursor: pointer;"
+                                                    class="fa fa-calendar" (click)="dp1.toggleCalendar()"></a></span>
+                                        </div>
+                                        <!-- <span class="input-group-append">
+                                        <a class="glyphicon glyphicon-calendar" (click)="dp1.toggleCalendar()"></a>
+                                    </span> -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>End Date</label>
+                                    <div class='input-group'>
+                                        <input angular-mydatepicker type="text" class="form-control"
+                                            name="draw_end_date_time" [options]="myDatePickerOptions2"
+                                            (dateChanged)="onDateChanged($event,'end_date')" #dp2="angular-mydatepicker"
+                                            formControlName="draw_end_date_time" disabled
+                                            style="background-color: #fff;" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <a style="cursor: pointer;" class="fa fa-calendar"
+                                                    (click)="dp2.toggleCalendar()"></a></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Is this Featured?</label>
+                                    <select class="form-control" name="is_featured" formControlName="is_featured">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Is this Active?</label>
+                                    <select class="form-control" name="is_active" formControlName="is_active">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Is slider Active/In-Active?</label>
+                                    <select class="form-control" name="is_slider" formControlName="is_slider">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                    </div>
+
+
+                        <div class="btn-group pull-right">
+
+                            <button type="button" class="btn btn-secondary" (click)="save_competition()">
+                                <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>Next Step <i
+                                    class="fa fa-arrow-right"></i></button>
+                        </div>
+                    </form>
+                    <!-- {{competitionform.value | json}} -->
+
+                </aw-wizard-step>
+                <aw-wizard-step stepTitle="Competition Image" [canExit]="canExitStep2">
+                    <form [formGroup]="competitionimageform">
+                        <div class="row" formArrayName="image_array"
+                            *ngFor="let cimage of competitionimageform.get('image_array')['controls'];let i = index;">
+                            <div class="col-md-8" [formGroupName]="i">
+                                <div class="form-group">
+                                    <label>Select Image</label>
+                                    <input type='file' class="form-control" name="image_url" id="image_url"
+                                        formControlName="image_url" (change)="detectFiles($event,i)" />
+
+                                </div>
+                            </div>
+                            <div class="col-md-4"
+                                style="text-align: center;vertical-align: middle;margin: auto;top: 0;bottom: 0;">
+                                <div class="form-group">
+                                    <label></label>
+                                    <button class="btn btn-danger" (click)="close_image(i)"><i
+                                            class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button class="btn btn-sm yellow-btn" (click)="addimage_control()">Add Image</button>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 img-wrap" *ngFor="let img of sliderimage_array;let i = index" style="margin-bottom: 10px;">
+                            <span class="close" (click)="removearray_image(img,i)">&times;</span>
+                            <img [src]='img.image_url' (onerror)="clear_notfoundimage(i)" style="height: 131px;width: 233px;" onerror="this.onerror=null;this.src='assets/img/smd/logo.png';">
+                        </div>
+
+
+                        <div class="btn-group pull-right">
+                            <!-- <button type="button" class="btn btn-secondary" awPreviousStep>Previous Step</button> -->
+                            <button type="button" class="btn btn-secondary" (click)="finishFunction()">
+                                <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>Complete</button>
+
+                        </div>
+                    </form>
+                    <!-- {{competitionimageform.value | json}} -->
+                </aw-wizard-step>
+            </aw-wizard>
+        </div>
+    </div>
+</div>

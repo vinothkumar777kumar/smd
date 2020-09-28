@@ -1,0 +1,161 @@
+<div _ngcontent-c5="">
+    <div _ngcontent-c5="" class="header-body">
+        <div _ngcontent-c5="" class="row">
+            <div _ngcontent-c5="" class="col-xl-6 col-lg-6">
+                <a href="javascript:void(0)" [routerLink]="['/users']">
+                    <div _ngcontent-c5="" class="card card-stats mb-4 mb-xl-0">
+                        <div _ngcontent-c5="" class="card-body">
+                            <div _ngcontent-c5="" class="row">
+                                <div _ngcontent-c5="" class="col">
+                                    <h6 _ngcontent-c5="" class="card-title text-uppercase text-muted mb-0">users</h6><span _ngcontent-c5="" class="h2 font-weight-bold mb-0" style="color: #fff;">{{userdatalength}}</span></div>
+                                <div _ngcontent-c5="" class="col-auto">
+                                    <div _ngcontent-c5="" class="icon icon-shape bg-danger text-white rounded-circle shadow"><i class="fa fa-users"></i></div>
+                                </div>
+                            </div>
+                            <!-- <p _ngcontent-c5="" class="mt-3 mb-0 text-muted text-sm"><span _ngcontent-c5="" class="text-success mr-2"><i _ngcontent-c5="" class="fa fa-arrow-up"></i> 3.48%</span><span _ngcontent-c5="" class="text-nowrap">Since last month</span></p> -->
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div _ngcontent-c5="" class="col-xl-6 col-lg-6">
+                <a href="javascript:void(0)" [routerLink]="['/live-active-competition']">
+                    <div _ngcontent-c5="" class="card card-stats mb-4 mb-xl-0">
+                        <div _ngcontent-c5="" class="card-body">
+                            <div _ngcontent-c5="" class="row">
+                                <div _ngcontent-c5="" class="col">
+                                    <h6 _ngcontent-c5="" class="card-title text-uppercase text-muted mb-0">Active Competitions</h6><span _ngcontent-c5="" class="h2 font-weight-bold mb-0" style="color: #fff;">{{featurcompetitionlength}}</span></div>
+                                <div _ngcontent-c5="" class="col-auto">
+                                    <div _ngcontent-c5="" class="icon icon-shape bg-warning text-white rounded-circle shadow"><i _ngcontent-c5="" class="fa fa-ticket"></i></div>
+                                </div>
+                            </div>
+                            <!-- <p _ngcontent-c5="" class="mt-3 mb-0 text-muted text-sm"><span _ngcontent-c5="" class="text-danger mr-2"><i _ngcontent-c5="" class="fas fa-arrow-down"></i> 3.48%</span><span _ngcontent-c5="" class="text-nowrap">Since last week</span></p> -->
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div _ngcontent-c5="" class="col-xl-6 col-lg-6">
+                <a href="javascript:void(0)" [routerLink]="['/home']">
+                    <div _ngcontent-c5="" class="card card-stats mb-4 mb-xl-0">
+                        <div _ngcontent-c5="" class="card-body">
+                            <div _ngcontent-c5="" class="row">
+                                <div _ngcontent-c5="" class="col">
+                                    <h6 _ngcontent-c5="" class="card-title text-uppercase text-muted mb-0" style="white-space: nowrap;">Upcoming Competitions</h6><span _ngcontent-c5="" class="h2 font-weight-bold mb-0" style="color: #fff;">{{upcommingdata_length}}</span></div>
+                                <div _ngcontent-c5="" class="col-auto">
+                                    <div _ngcontent-c5="" class="icon icon-shape bg-yellow text-white rounded-circle shadow"><i _ngcontent-c5="" class="fa fa-ticket"></i></div>
+                                </div>
+                            </div>
+                            <!-- <p _ngcontent-c5="" class="mt-3 mb-0 text-muted text-sm"><span _ngcontent-c5="" class="text-warning mr-2"><i _ngcontent-c5="" class="fas fa-arrow-down"></i> 1.10%</span><span _ngcontent-c5="" class="text-nowrap">Since yesterday</span></p> -->
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div _ngcontent-c5="" class="col-xl-6 col-lg-6">
+                <a href="javascript:void(0)" [routerLink]="['/winner']">
+                    <div _ngcontent-c5="" class="card card-stats mb-4 mb-xl-0">
+                        <div _ngcontent-c5="" class="card-body">
+                            <div _ngcontent-c5="" class="row">
+                                <div _ngcontent-c5="" class="col">
+                                    <h6 _ngcontent-c5="" class="card-title text-uppercase text-muted mb-0">Winners</h6><span _ngcontent-c5="" class="h2 font-weight-bold mb-0" style="color: #fff;">{{winnerdata.length}}</span></div>
+                                <div _ngcontent-c5="" class="col-auto">
+                                    <div _ngcontent-c5="" class="icon icon-shape bg-info text-white rounded-circle shadow"><i _ngcontent-c5="" class="fa fa-trophy"></i></div>
+                                </div>
+                            </div>
+                            <!-- <p _ngcontent-c5="" class="mt-3 mb-0 text-muted text-sm"><span _ngcontent-c5="" class="text-success mr-2"><i _ngcontent-c5="" class="fas fa-arrow-up"></i> 12%</span><span _ngcontent-c5="" class="text-nowrap">Since last month</span></p> -->
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row" style="margin-top: 30px;">
+    <div class="col-lg-12">
+        <form [formGroup]="competition_form">
+            <div class="form-group">
+                <select class="form-control" name="competition_id" id="competition_id" formControlName="competition_id" placeholder="Select Competition" style="padding: 8px;cursor: pointer;" id="competition" (change)="getticket_data()">
+        <option *ngFor="let cd of feature_data" [value]="cd.id">{{cd.competition}}</option>
+    </select>
+
+            </div>
+        </form>
+        
+    </div>
+</div> -->
+<!-- <div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-bordered" style="color: #fff;">
+                <thead>
+                    <tr>
+                        <td>S.No</td>
+                        <td>Competition</td>
+                        <td>Ticket Status</td>
+                        <td>Draw Start Date</td>
+                        <td>Draw End Date</td>
+                        <td>Sold Ticket</td>
+                        <td>Unsold Ticket</td>
+                        <td>Average sale per day</td>
+                        <td>Predition Days</td>
+                        <td>Edit</td>
+                        <td>Delete</td>
+                        <td>Edit</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cd of preditionarray;let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{cd.competition}}</td>
+                        <td>{{cd.ticketstatus}}</td>
+                        <td>{{cd.startDate}}</td>
+                        <td>{{cd.endDate}}</td>
+                        <td>{{cd.soldTickets}}</td>
+                        <td>{{cd.unsoldTickets}}</td>
+                        <td>{{cd.valid_to}}</td>
+                        <td>{{cd.average}}</td>
+                        <td>
+                            <a href="javascript:void(0)" style="" (click)='edit_coupon(cd)'>
+                                <button class="btn btn-sm btn-primary">
+                            <i class="fa fa-edit icon"></i>
+                        </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" style="" (click)='delete_coupon(cd)'>
+                                <button class="btn btn-sm btn-danger">
+                            <i class="fa fa-trash icon"></i>
+                        </button>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="coupondata.length == 0">
+                        <td colspan="6">No Data Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div style="display: block;margin-bottom: 30px;">
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+        </canvas>
+</div>
+
+
+<div class="row" style="margin-bottom: 30px;text-align: center;">
+    <div class="col-lg-12">
+        <div style="display: block;">
+            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors" [legend]="pieChartLegend">
+            </canvas>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="row" style="text-align: center;">
+        <div class="col-lg-12">
+            <fusioncharts width="700" height="400" type="Column2d" [dataSource]="dataSource">
+            </fusioncharts>
+        </div>
+    </div>
+</div> -->

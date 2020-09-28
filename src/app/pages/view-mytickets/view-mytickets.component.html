@@ -1,0 +1,93 @@
+<!-- <div class="row">
+    <div class="col-md-12 ul-content">
+        <ul class="nav nav-tabs">
+            <li class="nav-item ticket-tab-item"><a href="#ticket-active" data-toggle="tab" class="nav-link active show">Active</a></li>
+            <li class="nav-item ticket-tab-item"><a href="#ticket-past" data-toggle="tab" class="nav-link">Past</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="ticket-active" role="tabpanel" aria-labelledby="ticket-active">
+                <div class="tab-pane fade show active" id="ticket-active" role="tabpanel" aria-labelledby="ticket-active">
+                    <div class="col-sm-12 text-center">No active tickets found.</div>
+                </div>
+            </div>
+            <div class="tab-pane fade" role="tabpanel" id="ticket-past" aria-labelledby="ticket-past">
+                <div class="tab-pane fade show active" id="ticket-active" role="tabpanel" aria-labelledby="ticket-active">
+                    <div class="col-sm-12 text-center">No past tickets found.</div>
+                </div>
+            </div>
+            <div class="tab-pane fade" role="tabpanel" id="ticket-elite-club" aria-labelledby="ticket-elite-club">
+                <div class="text-center">No elite tickets present</div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-8">
+            <h4>View My Tickets</h4>
+        </div>
+        <div class="col-md-4" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/my-ticket']"><i class="fa fa-close"></i></button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" style="color: #fff;">
+                <thead>
+                    <tr>
+                        <td>S.No</td>
+                        <td>Ticket</td>
+                        <td>Booking Date</td>
+                        <!-- <td>Status</td> -->
+                        <!-- <td>Edit</td> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="isloading" style="text-align: center;">
+                        <td colspan="3">
+                            <span class="spinner-border text-warning" role="status">
+                            <span class="sr-only">Loading...</span>
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr *ngFor="let at of ticketfdata;let i =index;">
+
+                        <td>{{i + 1}}</td>
+                        <!-- <td>
+                            <img style="width: 50px;height:50px;border-radius: 50%;" src="{{wd.profile_image}}" alt="winner_img" onerror="this.onerror=null;this.src='assets/img/png/w.png';" style="width:50px;height:50px;" />
+                        </td> -->
+                        <!-- <td *ngIf="at.start_date == null" style="text-align: center;">No Details</td>
+                        <td *ngIf="at.start_date">{{at.start_date}}</td> -->
+                        <!-- <td *ngIf="at.competition == null" style="text-align: center;">No Details</td>
+                        <td *ngIf="at.competition" class="text-uppercase">{{at.competition}}</td> -->
+                        <td *ngIf="at.booking_number == null" style="text-align: center;">No Details</td>
+                        <td *ngIf="at.booking_number" class="text-uppercase">{{at.booking_number}}</td>
+                        <td *ngIf="at.booking_date == null" style="text-align: center;">No Details</td>
+                        <td *ngIf="at.booking_date">{{at.booking_date}}</td>
+                        <!-- <td *ngIf="at.status == null" style="text-align: center;">No Details</td>
+                        <td *ngIf="at.status == 0">
+                            <span class="badge badge-danger">Expired</span></td>
+                            <td *ngIf="at.status == 1">
+                            <span class="badge badge-success">Live</span></td> -->
+                        <!-- <td>
+                            <a class="btn lucky-dip" data-toggle="modal" data-target="#winnermodal" data-placement="bottom" (click)="winner_select()">Select</a>
+                        </td> -->
+                        <!-- <td>
+                            <a href="javascript:void(0)" style="" (click)='view_winner(wd)'>
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td> -->
+
+
+                    </tr>
+                    <tr *ngIf="emptyactiveticketfdata" style="text-align:center">
+                        <td colspan="3">No Data Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

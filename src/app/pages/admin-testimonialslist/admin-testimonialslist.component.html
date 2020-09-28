@@ -1,0 +1,81 @@
+<div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-lg-6">
+            <h4>Testimonials</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/addtestimonials']"><i class="fa fa-plus"></i> Add</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" style="color: #fff;">
+                <thead>
+                    <tr style="text-align: center;font-size: 13px;">
+                        <th>S.No</th>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <!-- <th>Competition</th> -->
+                        <th style="white-space: nowrap;">User Name</th>
+                        <th style="width: 75px;">Comments</th>
+                        <th>Status</th>
+                        <th>View</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <!-- <td>Edit</td> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tm of testimonialsarray;let i = index" style="text-align: center;font-size: 13px;">
+                        <td>{{i + 1}}</td>
+                        <td>
+                            <img src="{{tm.image}}" alt="blog" style="height: 45px;width: 50px;border-radius: 50%;"  onerror="this.onerror=null;this.src='assets/img/smd/logo.png';" />
+                        </td>
+                        <td>{{tm.title}}</td>
+                        <!-- <td>{{tm.competition}}</td> -->
+                        <td>{{tm.name}}</td>
+                        <td>{{tm.description}}</td>
+                        <td *ngIf="tm.status == 0">
+                            <span class="badge badge-danger" style="font-size: 12px;">In-Active</span>
+                        </td>
+                        <td *ngIf="tm.status == 1">
+                            <span class="badge badge-success" style="font-size: 12px;">Active</span>
+                        </td>
+                        <td>
+                            <a href=" javascript:void(0) " style=" " [routerLink]="['/viewtestimonials']">
+                                <button class="btn btn-sm btn-primary ">
+                                <i class="fa fa-eye icon "></i>
+                            </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href=" javascript:void(0) " style=" " (click)='edit_testimonials(tm)'>
+                                <button class="btn btn-sm btn-primary ">
+                                <i class="fa fa-edit icon "></i>
+                            </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0) " style=" " (click)='delete_testimonials(tm)'>
+                                <button class="btn btn-sm btn-danger ">
+                                <i class="fa fa-trash icon "></i>
+                            </button>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="isloading ">
+                        <td colspan="9" class="col-lg-12 " style="text-align: center; ">
+                            <span class="spinner-border text-warning " role="status ">
+                                <span class="sr-only ">Loading...</span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="emptytestimonialsdata " style="text-align:center ">
+                        <td colspan="9">No Data Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-8">
+            <h4>Questions</h4>
+        </div>
+        <div class="col-md-4" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/add-question']"><i class="fa fa-plus"></i> Add</button>
+
+            
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" style="color: #fff;">
+                <thead>
+                    <tr>
+                        <td>S.No</td>
+                        <!-- <td>Competition</td> -->
+                        <td>Question</td>
+                        <!-- <td>Answer</td> -->
+                        <!-- <td>Ticket</td> -->
+                        <!-- <td>Booking Date</td> -->
+                        <!-- <td>Status</td> -->
+                        <td>Edit</td>
+                        <td>Delete</td>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="isloading" style="text-align: center;">
+                        <td colspan="7">
+                            <span class="spinner-border text-warning" role="status">
+                            <span class="sr-only">Loading...</span>
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr *ngFor="let qd of questionarraydata;let i =index;">
+
+                        <td>{{i + 1}}</td>
+                        <!-- <td>
+                            <img style="width: 50px;height:50px;border-radius: 50%;" src="{{wd.profile_image}}" alt="winner_img" onerror="this.onerror=null;this.src='assets/img/png/w.png';" style="width:50px;height:50px;" />
+                        </td> -->
+                        <!-- <td>
+                            <span *ngIf="qd.competition == null">No Details</span>
+                            <span *ngIf="qd.competition">{{qd.competition}}</span></td> -->
+                        <td>{{qd.question}}</td>
+                        <!-- <td class="text-uppercase">{{qd.answer}}</td> -->
+                        <!-- <td class="text-uppercase">{{at.booking_number}}</td> -->
+                        <!-- <td>{{at.booking_date}}</td> -->
+                        <!-- <td *ngIf="at.status == 0">
+                            <span class="badge badge-danger">Expired</span></td>
+                            <td *ngIf="at.status == 1">
+                            <span class="badge badge-success">Live</span></td> -->
+                        <!-- <td>
+                            <a class="btn lucky-dip" data-toggle="modal" data-target="#winnermodal" data-placement="bottom" (click)="winner_select()">Select</a>
+                        </td> -->
+                        <!-- <td>
+                            <a href="javascript:void(0)" style="" (click)='view_winner(wd)'>
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td> -->
+                        <td>
+                            <a class="btn btn-sm btn-primary" href="javascript:void(0)" style="" (click)='edit_questions(qd)'>
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" href="javascript:void(0)" style="" (click)='delete_questions(qd)'>
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+
+
+                    </tr>
+                    <tr *ngIf="emptyquestiondata" style="text-align:center">
+                        <td colspan="4">No Data Found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

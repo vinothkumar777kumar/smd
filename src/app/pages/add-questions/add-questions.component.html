@@ -1,0 +1,173 @@
+<div>
+    <div class="row">
+        <div class="col-lg-6">
+            <h4>{{title}}</h4>
+        </div>
+        <div class="col-lg-6" style="text-align: end;">
+            <button class="btn btn-sm yellow-btn" [routerLink]="['/questionslist']"><i class="fa fa-close"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="addquestionform">
+                <input type="hidden" name="id" formControlName="id">
+                <div class="row">
+                    <!-- <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Select Competitions</label>
+                            <select class="form-control" name="competition_id" id="competition_id" formControlName="competition_id" placeholder="Select Competition">
+                                <option value="" selected>Select Competition</option>
+                                    <option *ngFor="let cd of competitionarray" [value]="cd.id">{{cd.competition}}</option>
+                                </select>
+                            <input type="text" name="user_id" class="form-control" formControlName="user_id" *ngIf="edituser_id" [attr.disabled]=editdisablecompetition/>
+                            <div *ngIf="isSubmitted && formControls.competition_id.errors" class="help-block">
+                                <span *ngIf="formControls.competition_id.errors.required">
+                                    Competition is required
+                    </span>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Question</label>
+                            <!-- <ckeditor  (change)="onChange($event)" formControlName="description"></ckeditor> -->
+                            <textarea name="question" id="question" class="form-control" formControlName="question">  </textarea>
+                            <div *ngIf="isSubmitted && formControls.question.errors" class="help-block">
+                                <span *ngIf="formControls.question.errors.required">
+                                Question is required
+                                </span>
+                                <!-- <div *ngIf="formControls.question.errors.minlength">
+                                    Question must be at least 5 characters.
+                                </div> -->
+                                <div *ngIf="formControls.question.errors.maxlength">
+                                    Question must be max 200 characters.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Option A</label>
+                                <input type="text" name="option_a" formControlName="option_a" class="form-control" />
+                            <div *ngIf="isSubmitted && formControls.option_a.errors" class="help-block">
+                                <span *ngIf="formControls.option_a.errors.required">
+                                    Option A is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-2" style="margin: auto;text-align: center;">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="radio" class="form-check-input" name="crectanswer" formControlName="crectanswer" value="A">Option A
+                            </label>
+                          </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Option B</label>
+                                <input type="text" name="option_b" formControlName="option_b" class="form-control" />
+                            <div *ngIf="isSubmitted && formControls.option_b.errors" class="help-block">
+                                <span *ngIf="formControls.option_b.errors.required">
+                                    Option B is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-2" style="margin: auto;text-align: center;">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="radio" class="form-check-input" name="crectanswer" formControlName="crectanswer" value="B">Option B
+                            </label>
+                          </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Option C</label>
+                                <input type="text" name="option_c" formControlName="option_c" class="form-control" />
+                            <div *ngIf="isSubmitted && formControls.option_c.errors" class="help-block">
+                                <span *ngIf="formControls.option_c.errors.required">
+                                    Option C is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-2" style="margin: auto;text-align: center;">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="radio" class="form-check-input" name="crectanswer" formControlName="crectanswer" value="C">Option C
+                            </label>
+                          </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Option D</label>
+                                <input type="text" name="option_d" formControlName="option_d" class="form-control" />
+                            <div *ngIf="isSubmitted && formControls.option_d.errors" class="help-block">
+                                <span *ngIf="formControls.option_d.errors.required">
+                                    Option D is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-2" style="margin: auto;text-align: center;">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="radio" class="form-check-input" name="crectanswer" formControlName="crectanswer" value="D">Option D
+                            </label>
+                          </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Option E</label>
+                                <input type="text" name="option_e" formControlName="option_e" class="form-control" />
+                            <div *ngIf="isSubmitted && formControls.option_e.errors" class="help-block">
+                                <span *ngIf="formControls.option_e.errors.required">
+                                    Option E is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-2" style="margin: auto;text-align: center;">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="radio" class="form-check-input" name="crectanswer" formControlName="crectanswer" value="E">Option E
+                            </label>
+                          </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Correct Answer</label>
+                            <select name="answer" formControlName="answer" class="form-control">
+                                <option value="">Select</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
+                                <!-- <input type="text" name="answere" formControlName="answere" class="form-control" /> -->
+                            <div *ngIf="isSubmitted && formControls.answer.errors" class="help-block">
+                                <span *ngIf="formControls.answer.errors.required">
+                                    Correct Answer is required
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    
+                    
+                    <div class="col-lg-12" style="text-align: end;margin: auto;top: 16px;">
+                        <div class="form-group">
+                            <label></label>
+                            <button class="btn yellow-btn" type="submit" value="Save" (click)="addquestion()">
+                                <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>{{action_btn}}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- {{addquestionform.value | json}} -->
+        </div>
+    </div>
+</div>

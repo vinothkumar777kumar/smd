@@ -1,0 +1,91 @@
+<div class="container pagepadd">
+    <div *ngIf="isloading" class="row" style="margin: auto;padding: 24px;">
+    <div class="col-lg-12" style="text-align: center;">
+        <span class="spinner-border text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+        </span>
+    </div>
+</div>
+    <div class="contentrow" *ngIf="isshowfeatured">
+        <div class="row" style="margin-bottom: 25px;">
+            <h2 class="border_yellow">Featured Competitions</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4" style="margin-top: 30px;
+            margin-bottom: 30px;" *ngFor="let cd of featuredarraydata">
+                <a class="single-competitions comp-bg-1" href="javascript:void(0)" (click)="competitions_details(cd)" style="background-image: url({{cd.image}});">
+                    <!-- <div class="sc-EHOje hsyqvJ">Sale!</div> -->
+                    <div *ngIf="cd.sold == 'true'" class="ribbon ribbon-top-right yellow"><span>SOLD OUT</span></div>
+                    <div *ngIf="cd.discount_status == 'true'"class="sc-EHOje hsyqvJ">Sale</div>
+                    <div class="sc-htpNat fPoByH">
+                        <div *ngIf="cd.discount_status == 'true'" class="sc-bxivhb qqXnv">£{{cd.ticket_price}}</div>
+                        <div *ngIf="cd.discount_status == 'true'"  class="sc-ifAKCX hiinnP">£{{cd.discount_price}}</div>
+                        <div *ngIf="cd.discount_status == 'false'" class="sc-ifAKCX hiinnP">£{{cd.ticket_price}}</div>
+                    </div>
+                </a>
+                <p class="fcbottom_content">{{cd.competition}}</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="contentrow" *ngIf="isshowupcoming">
+        <div class="row" style="margin-bottom: 25px;">
+            <h2 class="border_yellow">Upcoming Competitions</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3" style="margin-top: 30px;
+            margin-bottom: 30px;" *ngFor="let cd of upcomming">
+                <a class="single-competitions comp-bg-1" href="javascript:void(0)" style="background-image: url({{cd.image}});">
+                    <div class="sc-EHOje hsyqvJ">Coming Soon</div>
+                    <div class="sc-htpNat fPoByH">
+                        <!-- <div class="sc-bxivhb qqXnv">£{{cd.ticket_price}}</div> -->
+                        <!-- <div class="sc-ifAKCX hiinnP">£{{cd.sale_price}}</div> -->
+                    </div>
+                </a>
+                <p class="fcbottom_content">{{cd.competition}}</p>
+            </div>
+
+        </div>
+    </div>
+    <!-- <div class="contentrow">
+        <div class="row" style="margin-bottom: 25px;">
+            <h2 class="border_yellow">Saturday</h2>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top: 30px;
+        margin-bottom: 30px;">
+                <a class="single-competitions comp-bg-1" href="#" style="background-image: url('assets/img/smd/win5.jpg');">
+                    <div class="sc-EHOje hsyqvJ">£24.00</div>
+                    <div class="sc-htpNat fPoByH">
+                       
+                    </div>
+                </a>
+                
+            </div>
+            <div class="col-md-3" style="margin-top: 30px;
+        margin-bottom: 30px;">
+                <a class="single-competitions comp-bg-1" href="#" style="background-image: url('assets/img/smd/win2.png');">
+                    <div class="ribbon ribbon-top-right red"><span>Sold Out</span></div>
+                </a>
+                
+            </div>
+            <div class="col-md-3" style="margin-top: 30px;
+        margin-bottom: 30px;">
+                <a class="single-competitions comp-bg-1" href="#" style="background-image: url('assets/img/smd/win3.jpg');">
+                    <div class="ribbon ribbon-top-right red"><span>Sold Out</span></div>
+                </a>
+                
+            </div>
+            <div class="col-md-3" style="margin-top: 30px;
+        margin-bottom: 30px;">
+                <a class="single-competitions comp-bg-1" href="#" style="background-image: url('assets/img/smd/win8.jpg');">
+                    <div class="ribbon ribbon-top-right red"><span>Sold Out</span></div>
+                </a>
+                
+            </div>
+        </div>
+    </div> -->
+</div>

@@ -1,0 +1,51 @@
+<div class="container" style="padding: 30px 40px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="heading_blog">
+                <h2 class="border_yellow">Blog - <span style="color: #fdcc03;" [innerHTML]="blogdetails.title"></span></h2>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-sm yellow-btn" [routerLink]='["/blog"]'><i class="fa fa-close"></i> </button>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-md-6"  style="margin-bottom: 30px;">
+            <a href="javascript:void(0)">
+            <!-- <div class="card" style="height: 410px;"> -->
+                <img src="{{blogdetails.image}}" alt="blog" class="card-img-top" onerror="this.onerror=null;this.src='assets/img/smd/logo.png';" style="border-radius: 10px;">
+                <!-- <div class="card-body">
+                    <p class="card-text">{{bd.title}}</p>
+                </div> -->
+            <!-- </div> -->
+        </a>
+            <!-- <p *ngIf="emptyblogdata" style="text-align:center">
+                No Data Found
+            </p> -->
+        </div>
+        <div class="col-md-6"  style="margin-bottom: 30px;">
+            <!-- <a href="javascript:void(0)" (click)="view_blog(bd)"> -->
+            <!-- <div class="card" style="height: 410px;"> -->
+                
+                <!-- <div class="card-body"> -->
+                    <div style="float: right;font-size: 11px;color: #ddd;">
+                        <p>published : <span>{{blogdetails.published_at}}</span></p>
+                    </div><br>
+                    <p class="card-text" style="text-align: justify;" [innerHTML]="blogdetails.description"></p>
+                <!-- </div> -->
+            <!-- </div> -->
+        <!-- </a> -->
+            <!-- <p *ngIf="emptyblogdata" style="text-align:center">
+                No Data Found
+            </p> -->
+        </div>
+    </div>
+    <div *ngIf="isLoading" class="row" style="text-align: center;margin-top: 20px;">
+        <div class="col-lg-12">
+            <span class="spinner-border text-warning" role="status">
+            <span class="sr-only">Loading...</span>
+            </span>
+        </div>
+    </div>
+</div>

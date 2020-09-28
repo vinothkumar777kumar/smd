@@ -1,0 +1,56 @@
+<div class="container" style="padding: 30px 40px;">
+    <div class="row">
+        <div class="col">
+            <div class="heading_blog">
+                <h2 class="border_yellow">Checkout</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div>
+                <div class="rccs">
+                    <div class="rccs__card rccs__card--unknown">
+                        <div class="rccs__card--front">
+                            <div class="rccs__card__background"></div>
+                            <div class="rccs__issuer"></div>
+                            <div class="rccs__cvc__front"></div>
+                            <div class="rccs__number">•••• •••• •••• ••••</div>
+                            <div class="rccs__name">YOUR NAME HERE</div>
+                            <div class="rccs__expiry">
+                                <div class="rccs__expiry__valid">valid thru</div>
+                                <div class="rccs__expiry__value">••/••</div>
+                            </div>
+                            <div class="rccs__chip"></div>
+                        </div>
+                        <div class="rccs__card--back">
+                            <div class="rccs__card__background"></div>
+                            <div class="rccs__stripe"></div>
+                            <div class="rccs__signature"></div>
+                            <div class="rccs__cvc"></div>
+                            <div class="rccs__issuer"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <form class="checkout-form">
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control your-name" (keyup)="onchange($event,'name')" placeholder="Name" required="">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="number" class="form-control expiry card-number" (keypress)="numberOnly($event)" (keyup)="onchange($event,'cardnumber')" placeholder="Card Number" pattern="[\d| ]{16,22}" required="" maxlength="22">
+                        </div>
+                        <div class="row">
+                            <div class="col-6"><input type="tel" name="expiry" id="expiry" class="form-control expiry datemonth" (keyup)="onchange($event,'expiry')" placeholder="MM/YY" pattern="\d\d/\d\d" required="" maxlength="5"></div>
+                            <div class="col-6"><input type="tel" name="cvc" id="cvc" class="form-control cvc" placeholder="CVC" (keypress)="numberOnly($event)" (keyup)="onchange($event,'cvc')" pattern="\d{3,4}" required="" maxlength="4"></div>
+                        </div>
+                        <input type="hidden" name="issuer" value="">
+                        <div class="form-group" style="margin-top: 10px;">
+                            <button class="btn yellow-btn  btn-block" (click)="postcheckout()">PAY</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

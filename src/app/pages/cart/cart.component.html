@@ -1,0 +1,168 @@
+<div class="container" style="padding: 30px 40px;">
+    <div class="row">
+        <div class="">
+            <div class="heading_blog">
+                <h2 class="border_yellow">Cart Details</h2>
+
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col">
+            <p class="float-right"><span class="text-yellow">£ 0.20</span> will be added to your wallet</p>
+        </div>
+    </div> -->
+    <div class="mb-5 row" *ngFor="let cd of cart_data;let i = index">
+        <div class="col">
+            <div clasasnam="justify-content-center" class="row">
+                <div class="col">
+                    <div class="pb-3 pt-3 sc-kkGfuU cgMUoR container">
+                        <div class="row">
+                            <div class="col-md-2 col-4"><img src="{{image_url+cd.image}}" alt=""
+                                    style="height: 106px;width:100%;"
+                                    onerror="this.onerror=null;this.src='assets/img/smd/logo.png';"></div>
+                            <div class="sc-iAyFgw ifGIAs col-md-8 col-6">
+                                <h3 class="sc-fjdhpX csoghH">{{cd.competition}}</h3>
+                                <h4 class="sc-jzJRlG ivXPGv">#{{cd.booking_number}}</h4>
+                                <h5 class="text-yellow sc-cvbbAY fgOdrh">£{{cd.sale_price}}</h5>
+                                <!-- <div class="row">
+                                    <div class="text-yellow sc-cvbbAY fgOdrh">£{{cd.ticket_price}} </div>
+                            
+                                </div> -->
+                            </div>
+                            <div class="sc-hSdWYo feQigr col-2"><a class="sc-jWBwVP jFFBvY" (click)="remove_data(i)"><i
+                                        class="fa fa-trash"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-1 sc-gPEVay Aajyq row" *ngIf="cart_data.length > 0">
+        <div class="col-md-auto col-12">
+            <div class="mb-3 mb-md-0 sc-cMljjf gtyRwq row">
+                <div class="pr-0 col-auto">
+                    <input class="sc-jDwBTQ tDUg" type="text" placeholder="Coupon code" name="code" id="code">
+                </div>
+                <div class="pl-0 col-auto">
+                    <button class="sc-jAaTju bkngRv" (click)="checkcouponavailable()"
+                        [attr.disabled]="applaystatus == true ? 'disabled' : null ">
+                        <i class="fa" [ngClass]="{'fa-spin fa-spinner': couponloading}"></i>Apply</button>&nbsp;
+                    <button *ngIf="removecouponbtn" class="btn btn-sm btn-warning" (click)="removecoupon()"><i
+                            class="fa fa-trash"></i></button>
+                </div>
+            </div>
+
+        </div>
+        <div class="fr col-md-auto col-12"></div>
+    </div>
+    <div class="col-sm-12 p">
+        <p></p>
+    </div>
+    <div class="col-sm-12" *ngIf="cart_data.length > 0">
+        <ul class="list-style-none">
+            <li class="sub-total-row"><span class="label">Sub Total:</span><span class="value">£
+                    {{total_ticket_price}}</span></li>
+            <li *ngIf="coupon_discount" class="sub-total-row"><span class="label">Coupon Discount:</span><span
+                    class="value"> {{coupon_dscount_value}}</span></li>
+            <li *ngIf="showfreeticket" class="sub-total-row"><span class="label">Free Ticket Price:</span><span
+                    class="value">£ {{freeticket_dis}}</span></li>
+            <li class="total-row"><span class="label">Total:</span><span class="value">£ {{discountotalprice}}</span>
+            </li>
+        </ul>
+    </div>
+    <!-- <div class="row">
+        <div class="col-lg-12">
+            <button class="btn yellow-btn" (click)="competitions_details()">Go To Booking Page</button>
+        </div>
+    </div> -->
+    <div class="row" *ngIf="cart_data.length > 0">
+        <div class="col">
+            <div class="btn-boxed">
+                <!-- <div class="float-left text-yellow">* Cart will be auto cleared in <span>03:13</span> mins</div> -->
+            </div>
+        </div>
+        <div class="col">
+            <button class="col-sm-4 btn yellow-btn float-right" style="font-size: 18px;" (click)="getquestion()">
+                <i class="fa" [ngClass]="{'fa-spin fa-spinner': secquesloading}"></i>Checkout »</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="cart_data.length == 0">
+        <div class="col">
+            <div class="text-md">Add items to your cart to win amazing prizes</div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="faqmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="defaultModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="securityform">
+                <div class="modal-body" style="text-align: center;justify-content: center;">
+
+                    <!-- <img style="width: 130px;height:130px;margin-left: 13px;" src="assets/img/smd/logo.png" /> -->
+                    <h5 class="mt-4" style="text-align: center; color: rgb(0, 0, 0);">
+                        {{question}}
+                        <!-- <p>The form below contains three inline checkboxes:</p> -->
+                    </h5>
+                    <br>
+
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="radio1" name="secans" formControlName="secans"
+                            value="A">
+                        <label class="form-check-label" for="radio1">
+                            {{optiona}}
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="radio2" name="secans" formControlName="secans"
+                            value="B">
+                        <label class="form-check-label" for="radio2">
+                            {{optionb}}
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="radio3" value="C" name="secans"
+                            formControlName="secans">
+                        <label class="form-check-label" for="radio3">
+                            {{optionc}}
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="radio4" name="secans" formControlName="secans"
+                            value="D">
+                        <label class="form-check-label" for="radio4">
+                            {{optiond}}
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" id="radio5" name="secans" formControlName="secans"
+                            value="E">
+                        <label class="form-check-label" for="radio5">
+                            {{optione}}
+                        </label>
+                    </div>
+                    <div *ngIf="isSubmitted && formControls.secans.errors" class="help-block">
+                        <span *ngIf="formControls.secans.errors.required">
+                            Please select Answer
+                        </span>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-checkout" (click)="gotoaddress_select()"
+                        style="font-size: 13px;font-weight:600;margin-left: 20px;margin: auto;">
+                        <i class="fa" [ngClass]="{'fa-spin fa-spinner': checkoutloading}"></i>CONTINUE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
